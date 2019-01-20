@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import json
+import pickle
 from pathlib import Path
 from collections import Counter
 
@@ -54,9 +55,8 @@ def preprocess():
         filename = str(path).split('/')[-1]
         preprocess_dataset(dataset)
 
-        with open(project_dir / 'data' / 'processed' / filename, 'w') as fout:
-            for data in dataset:
-                fout.write(json.dumps(data) + '\n')
+        with open(project_dir / 'data' / 'processed' / filename, 'wb') as fout:
+            pickle.dump(dataset, fout)
 
 
 def get_dataset(path):
