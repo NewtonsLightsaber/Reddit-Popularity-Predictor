@@ -73,8 +73,11 @@ def preprocess_dataset(dataset):
         is_root = data['is_root']
         data['is_root'] = 1 if is_root else 0
 
+        # Split text into lowercase words
+        data['text'] = preprocess_text(data['text'])
+
         # Extract word count feature
-        data['word count'] = get_word_count(data['text'], most_freq_words)
+        data['word count'] = get_word_count(data, most_freq_words)
 
     return dataset
 
@@ -84,9 +87,9 @@ def get_most_freq_words(dataset):
     return [word for (word, _) in Counter(words).most_common(160)]
 
 
-def get_word_count(text, most_freq_words):
+def get_word_count(data, most_freq_words):
     word_count = [0] * 160
-    counts = dict(Counter(text.lower().split()))
+    counts = dict(Counter(data['text']))
     for word, count in counts.items():
         if word in most_freq_words:
             word_count[most_freq_words.index(word)] = count
@@ -94,7 +97,7 @@ def get_word_count(text, most_freq_words):
     return word_count
 
 def preprocess_text(text):
-    return text.lower()
+    return text.lower().split()
 
 
 if __name__ == '__main__':
