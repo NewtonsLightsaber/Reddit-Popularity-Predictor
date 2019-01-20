@@ -55,7 +55,7 @@ def preprocess():
         preprocess_dataset(dataset)
 
         with open(project_dir / 'data' / 'processed' / filename, 'w') as fout:
-            json.dump(dataset, fout, indent=4)
+            fout.write(json.dump(dataset) + '\n')
 
 
 def get_dataset(path):
