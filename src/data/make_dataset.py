@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 from collections import Counter
 
-
 project_dir = Path(__file__).resolve().parents[2]
 
 def main():
@@ -76,7 +75,7 @@ def preprocess_dataset(dataset):
         data['text'] = preprocess_text(data['text'])
 
         # Extract word count feature
-        data['word count'] = get_word_count(data, most_freq_words)
+        data['word_count'] = get_word_count(data, most_freq_words)
 
     return dataset
 
@@ -94,6 +93,7 @@ def get_word_count(data, most_freq_words):
             word_count[most_freq_words.index(word)] = count
 
     return word_count
+
 
 def preprocess_text(text):
     return text.lower().split()
