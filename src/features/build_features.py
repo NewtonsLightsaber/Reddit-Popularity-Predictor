@@ -6,7 +6,7 @@ from pathlib import Path
 
 project_dir = Path(__file__).resolve().parents[2]
 feature_names = [
-    'X_word_count',
+    'X_counts',
     'y', # popularity_score
 ]
 
@@ -30,17 +30,17 @@ def get_dataset(path):
 
 
 def get_features(dataset):
-    X_word_count = []
+    X_counts = []
     y = []
 
     for data in dataset:
-        X_word_count.append(data['word_count'])
+        X_counts.append(data['x_counts'])
         y.append([data['popularity_score']])
 
-    X_word_count = np.array(X_word_count)
+    X_counts = np.array(X_counts)
     y = np.array(y)
 
-    return X_word_count, y
+    return X_counts, y
 
 
 def write_to_file(features, file_prefix):
