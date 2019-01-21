@@ -71,9 +71,6 @@ def preprocess_dataset(dataset):
         is_root = data['is_root']
         data['is_root'] = 1 if is_root else 0
 
-        # Split text into lowercase words
-        data['text'] = preprocess_text(data['text'])
-
         # Extract word count feature
         data['word_count'] = get_word_count(data, most_freq_words)
 
@@ -93,10 +90,6 @@ def get_word_count(data, most_freq_words):
             word_count[most_freq_words.index(word)] = count
 
     return word_count
-
-
-def preprocess_text(text):
-    return text.lower().split()
 
 
 if __name__ == '__main__':
