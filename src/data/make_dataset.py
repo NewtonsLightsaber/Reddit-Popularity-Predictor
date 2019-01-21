@@ -64,6 +64,9 @@ def get_dataset(path):
 
 
 def preprocess_dataset(dataset):
+    """
+    Encode is_root and x_counts feature
+    """
     most_freq_words = get_most_freq_words(dataset)
 
     for data in dataset:
@@ -72,7 +75,7 @@ def preprocess_dataset(dataset):
         data['is_root'] = 1 if is_root else 0
 
         # Extract word count feature
-        data['word_count'] = get_word_count(data, most_freq_words)
+        data['x_counts'] = get_x_counts(data, most_freq_words)
 
     return dataset
 
@@ -82,14 +85,14 @@ def get_most_freq_words(dataset):
     return [word for (word, _) in Counter(words).most_common(160)]
 
 
-def get_word_count(data, most_freq_words):
-    word_count = [0] * 160
+def get_x_counts(data, most_freq_words):
+    x_counts = [0] * 160
     counts = dict(Counter(data['text']))
     for word, count in counts.items():
         if word in most_freq_words:
-            word_count[most_freq_words.index(word)] = count
+            x_counts[most_freq_words.index(word)] = count
 
-    return word_count
+    return x_counts
 
 
 if __name__ == '__main__':
