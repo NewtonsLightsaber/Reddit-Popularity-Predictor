@@ -45,7 +45,11 @@ def split_data():
 
 def preprocess():
     """
-    Iterate through all 3 interim datasets and preprocess each of them.
+    Iterate through all 3 interim datasets and preprocess each of them,
+    then saving them into 3 files in data/processed/:
+        training_data.json
+        validation_data.json
+        test_data.json
     """
     paths = (project_dir / 'data' / 'interim').glob('*.json')
     for path in paths:
@@ -53,7 +57,8 @@ def preprocess():
         filename = str(path).split('/')[-1]
         preprocess_dataset(dataset)
 
-        with open(project_dir / 'data' / 'processed' / filename, 'w') as fout:
+        output_path = project_dir / 'data' / 'processed'
+        with open(output_path / filename, 'w') as fout:
             json.dump(dataset, fout)
 
 
@@ -81,18 +86,22 @@ def preprocess_dataset(dataset):
 
 
 def get_most_freq_words(dataset):
-    words = [word for data in dataset for word in data['text'].lower().split()]
+    words = [word for data in dataset for word in preprocess_text(data['text'])]
     return [word for (word, _) in Counter(words).most_common(160)]
 
 
 def get_x_counts(data, most_freq_words):
     x_counts = [0] * 160
-    counts = dict(Counter(data['text']))
+    counts = dict(Counter(preprocess_text(data['text'])))
     for word, count in counts.items():
         if word in most_freq_words:
             x_counts[most_freq_words.index(word)] = count
 
     return x_counts
+
+
+def preprocess_text(text):
+    return text.lower().split()
 
 
 if __name__ == '__main__':
