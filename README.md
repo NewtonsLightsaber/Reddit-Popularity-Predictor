@@ -18,7 +18,7 @@
     ```
     make create_environment
     ```
-2. If not inside the virtual environment already, **enter it**, then install the required packages
+2. If not inside the virtual environment already, **enter it,** then install the required packages
     ```
     make requirements
     ```

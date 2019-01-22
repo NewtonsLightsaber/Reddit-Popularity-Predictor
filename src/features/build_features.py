@@ -44,8 +44,9 @@ def get_features(dataset):
 
 
 def write_to_file(features, file_prefix):
+    output_path = project_dir / 'src' / 'features'
     for feature, name in zip(features, feature_names):
-        with open(project_dir / 'src' / 'features' / (file_prefix+'_'+name+'.json'), 'wb') as fout:
+        with open(output_path / (file_prefix+'_'+name+'.json'), 'wb') as fout:
             pickle.dump(feature, fout)
 
 
