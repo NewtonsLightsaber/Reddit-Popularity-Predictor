@@ -10,12 +10,14 @@ def main():
     """
     Runs data processing scripts to turn raw data from (../raw) into
     cleaned data ready to be analyzed (saved in ../processed).
+    Writes the 160 most frequent words in the training set to reports/words.txt.
     """
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 
     split_data()
     preprocess()
+    write_most_freq_words()
 
 
 def split_data():
@@ -68,7 +70,7 @@ def get_dataset(path):
 
 def preprocess_dataset(dataset):
     """
-    Encode is_root and x_counts feature
+    Encode is_root and x_counts feature.
     """
     most_freq_words = get_most_freq_words(dataset)
 
@@ -96,6 +98,15 @@ def get_x_counts(data, most_freq_words):
             x_counts[most_freq_words.index(word)] = count
 
     return x_counts
+
+
+def write_most_freq_words():
+    training_set = get_dataset(
+        project_dir / 'data' / 'interim' / 'training_data.json')
+    most_freq_words = get_most_freq_words(training_set)
+    with open(project_dir / 'reports' / 'words.txt', 'w') as fout:
+        for i, word in enumerate(most_freq_words):
+            fout.write('%d. %s\n' % (i+1, word))
 
 
 def preprocess_text(text):
