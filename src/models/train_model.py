@@ -11,16 +11,28 @@ class LinearRegression:
 
 class ClosedForm(LinearRegression):
     def train(self, X_train, Y_train):
+        """
+        Find weight vector w from the features and labels matrixes
+        Side effect: return the weight vector w
+        """
         X_transp = X_train.T
         self.w = np.dot(
-            np.linalg.inv(
-                np.dot(X_transp, X_train)
-            ),
+            np.linalg.inv( np.dot(X_transp, X_train) ),
             np.dot(X_transp, Y_train)
-        )
+            )
+
+        return self.w
 
     def predict(self, X):
-        pass
+        """
+        Return the prediction vector.
+        Side effect: raise Exception if model model isn't trained
+                    i.e. self.w is None
+        """
+        if self.w is not None:
+            return np.dot(X, self.w)
+        else:
+            raise Exception('Model is not trained.')
 
 
 class GradientDescent(LinearRegression):
