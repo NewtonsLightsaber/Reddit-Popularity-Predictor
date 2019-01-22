@@ -8,7 +8,7 @@ project_dir = Path(__file__).resolve().parents[2]
 feature_names = [
     'X_counts',
     'y', # popularity_score
-]
+    ]
 
 def main():
     paths = (project_dir / 'data' / 'processed').glob('*.json')
