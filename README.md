@@ -5,7 +5,8 @@
 ## Prerequisites
 
 * Python 3.7
-* `miniconda` (or `anaconda`)  
+* `miniconda` (or `anaconda`)
+
     ```
     # On Arch Linux
     pip install miniconda3
