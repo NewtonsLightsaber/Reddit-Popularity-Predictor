@@ -9,10 +9,20 @@ project_dir = Path(__file__).resolve().parents[2]
 class LinearRegression:
     w = None
 
+    def is_trained(self):
+        return self.w is not None
+
+
 class ClosedForm(LinearRegression):
+    """
+    Closed form linear regression solution.
+    Inherit LinearRegression class.
+    """
+
     def train(self, X_train, Y_train):
         """
-        Find weight vector w from the features and labels matrixes
+        Save weight vector w as a field of the instance,
+        from the features and labels matrixes.
         Side effect: return the weight vector w
         """
         X_transp = X_train.T
@@ -20,12 +30,11 @@ class ClosedForm(LinearRegression):
             np.linalg.inv( np.dot(X_transp, X_train) ),
             np.dot(X_transp, Y_train)
             )
-
         return self.w
 
     def predict(self, X):
         """
-        Return the prediction vector.
+        Return the prediction vector y.
         Side effect: raise Exception if model model isn't trained
                     i.e. self.w is None
         """
@@ -33,6 +42,14 @@ class ClosedForm(LinearRegression):
             return np.dot(X, self.w)
         else:
             raise Exception('Model is not trained.')
+
+    def rmse(self, X, Y):
+        """
+        Return the Root Mean Squared Error of the predicted vector
+        with regards to the target vector
+        """
+        n = Y.shape[0]
+        return np.linalg.norm(self.predict(X) - Y) / np.sqrt(n)
 
 
 class GradientDescent(LinearRegression):
@@ -69,6 +86,7 @@ def get_XY_train():
 
     return XY_train
 
+
 def train_models(models, X_train, Y_train):
     for model in models:
         model.train(X_train, Y_train)
@@ -77,7 +95,7 @@ def train_models(models, X_train, Y_train):
 def save_models(models, filenames):
     output_path = project_dir / 'models'
     for model, name in zip(models, filenames):
-        if model.w is not None:
+        if model.is_trained():
             pickle.dump(model, open(output_path / name, 'wb'))
 
 
