@@ -20,13 +20,11 @@ def main():
 
 def split_data():
     output_path = project_dir / 'data' / 'interim'
-
     files = [
         'training_data.json',
         'validation_data.json',
         'test_data.json',
-    ]
-
+        ]
     dataset = get_dataset(project_dir / 'data' / 'raw' / 'proj1_data.json')
     training = dataset[0:10000]
     validation = dataset[10000:11000]
