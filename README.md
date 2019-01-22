@@ -49,6 +49,18 @@ The commands for both are:
     # Create files storing X_counts and y in src/features/ from the datasets in data/processed/
     make features
 
+### Training models
+The trained models are in `models/`:
+
+    # models/
+    ClosedForm.pkl
+    GradientDescent.pkl
+
+Train and save models to `models/` with:
+
+    # Check environment requirements, build datasets and features,
+    # then run src/models/train_model.py to train and save models to models/
+    make train
 
 ## Project Organization
 
