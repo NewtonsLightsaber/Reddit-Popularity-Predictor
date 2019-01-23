@@ -5,18 +5,14 @@ import numpy as np
 from pathlib import Path
 
 project_dir = Path(__file__).resolve().parents[2]
-feature_names = [
-    'X_counts',
-    'y', # popularity_score
-    ]
 
 def main():
     paths = (project_dir / 'data' / 'processed').glob('*.json')
     for path in paths:
         file_prefix = get_file_prefix(path)
         dataset = get_dataset(path)
-        features = get_features(dataset)
-        write_to_file(features, file_prefix)
+        X, y = get_XY(dataset)
+        write_to_file([X, y], file_prefix)
 
 
 def get_file_prefix(path):
@@ -29,24 +25,28 @@ def get_dataset(path):
     return dataset
 
 
-def get_features(dataset):
-    X_counts = []
-    y = []
+def get_XY(dataset):
+    X, y = [], []
+    bias_term = 1
 
     for data in dataset:
-        X_counts.append(data['x_counts'])
         y.append([data['popularity_score']])
+        X.append(
+            [data['is_root']]
+            + [data['controversiality']]
+            + [data['children']]
+            + data['x_counts']
+            + [bias_term])
 
-    X_counts = np.array(X_counts)
+    X = np.array(X)
     y = np.array(y)
-
-    return X_counts, y
+    return X, y
 
 
 def write_to_file(features, file_prefix):
     output_path = project_dir / 'src' / 'features'
-    for feature, name in zip(features, feature_names):
-        with open(output_path / (file_prefix+'_'+name+'.json'), 'wb') as fout:
+    for feature, suffix in zip(features, ['X', 'y']):
+        with open(output_path / (file_prefix+'_'+suffix+'.pkl'), 'wb') as fout:
             pickle.dump(feature, fout)
 
 
