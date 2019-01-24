@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import plotly.graph_objs as go
 import plotly.plotly as py
+import sys
 from pathlib import Path
 
 project_dir = Path(__file__).resolve().parents[2]
@@ -73,7 +74,7 @@ class gradientDescent(LinearRegression):
             wdiff = abs(wlist[i+1] - wlist[i])
             while(wdiff > epsilon):
                 wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
-            i+1
+            i+=1
         
         return wList
                                          
