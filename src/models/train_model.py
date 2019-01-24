@@ -62,7 +62,7 @@ class gradientDescent(LinearRegression):
         finalGradErr = (errArg.T).dot(errArg) #Err = (y-Xw)T * (y-Xw)
         return finalGradErr
 
-    def train(X_train, Y_train):
+    def train(self, X_train, Y_train):
         x = X_train
         epsilon = sys.float_info.epsilon #epsilon
         eta0 = 10 ** (-7)
