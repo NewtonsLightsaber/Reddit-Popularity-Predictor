@@ -3,6 +3,7 @@ import numpy as np
 import plotly.graph_objs as go
 import plotly.plotly as py
 from pathlib import Path
+import sys
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -54,7 +55,6 @@ class ClosedForm(LinearRegression):
 
 class gradientDescent(LinearRegression):
 
-
     def gradErr(w, X_train, Y_train):
         gradObj = LinearRegression()
         errArg = (Y_train - gradObj.predict(w, X_train)) #(y-Xw)
@@ -67,14 +67,16 @@ class gradientDescent(LinearRegression):
         eta0 = 10 ** (-7)
         beta = 10 ** (-4)
         alpha = eta0 / (1+beta) #steps
+        print('alpha = ', alpha)
         wList = []
         i = 0
-        while True:
-            wdiff = abs(wlist[i+1] - wlist[i])
-            while(wdiff > epsilon):
-                wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
-            i+1
-        
+        wdiff = abs(wList[i+1] - wList[i])
+        while(wdiff > epsilon):
+            wList[i+1] = wList[i] - ( alpha * (2* x.T.dot(x).dot(wList[i]) - x.T.dot(Y_train))) #or derivative(gradErr)
+            print('Generating w, w = ' , wList[i + 1])
+            i+=1
+            print('and i = ', i)
+        print('This is W List' , wList )
         return wList
 
 
