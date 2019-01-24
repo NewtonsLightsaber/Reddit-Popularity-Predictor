@@ -13,7 +13,7 @@ def main():
     Writes the 160 most frequent words in the training set to reports/words.txt.
     """
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info('making final datasets from raw data')
 
     split_data()
     preprocess()

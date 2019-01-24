@@ -33,6 +33,7 @@ data: requirements
 features: data
 	$(PYTHON_INTERPRETER) src/features/build_features.py
 
+## Train and save models
 train: features
 	$(PYTHON_INTERPRETER) src/models/train_model.py
 
