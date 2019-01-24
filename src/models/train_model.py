@@ -70,10 +70,9 @@ class gradientDescent(LinearRegression):
         alpha = eta0 / (1+beta) #steps
         wList = []
         i = 0
-        while True:
-            wdiff = abs(wlist[i+1] - wlist[i])
-            while(wdiff > epsilon):
-                wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
+        wdiff = abs(wList[i+1] - wList[i])
+        while(wdiff > epsilon):
+            wList[i+1] = wList[i] - ( alpha * (2* x.T.dot(x).dot(wList[i]) - x.T.dot(Y_train)) #or derivative(gradErr)
             i+=1
         
         return wList
