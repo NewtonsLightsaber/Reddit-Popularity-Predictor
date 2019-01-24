@@ -52,36 +52,30 @@ class ClosedForm(LinearRegression):
         return np.linalg.norm(self.predict(X) - Y) / np.sqrt(n)
 
 
-class GradientDescent(LinearRegression):
-    def train(self, X_train, Y_train, w_0, beta, eta_0, eps):
-        """
-        Save weight vector w as field of the instance.
-        Inputs:
-            X_train: data matrix,
-            Y_train: targets,
-            w_0: initial weights,
-            beta: speed of decay
-            eta_0: initial learning rate
-            eps: stopping tolerance
+class gradientDescent(LinearRegression):
 
-        Output:
-            Estimated weights w
-        """
-        X, y = X_train, Y_train
-        w_prev = w_0
-        err = lambda w : (y - X.dot(w)).T.dot(y - X.dot(w))
-        end = lambda w, w_prev : abs(err(w) - err(w_prev)) < eps
-        i = 1
 
+    def gradErr(w, X_train, Y_train):
+        gradObj = LinearRegression()
+        errArg = (Y_train - gradObj.predict(w, X_train)) #(y-Xw)
+        finalGradErr = (errArg.T).dot(errArg) #Err = (y-Xw)T * (y-Xw)
+        return finalGradErr
+
+    def train(self, X_train, Y_train):
+        x = X_train
+        epsilon = sys.float_info.epsilon #epsilon
+        eta0 = 10 ** (-7)
+        beta = 10 ** (-4)
+        alpha = eta0 / (1+beta) #steps
+        wList = []
+        i = 0
         while True:
-            alpha = eta_0 / (1 + beta * i)
-            w = w_prev - 2*alpha*(X.T.dot(X).dot(w_prev) - X.T.dot(y))
-            i += 1
-            if end(w, w_prev):
-                break
-
-        self.w = w
-        return self.w
+            wdiff = abs(wlist[i+1] - wlist[i])
+            while(wdiff > epsilon):
+                wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
+            i+1
+        
+        return wList
 
 
 def main():
