@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 import json
 import pickle
 import numpy as np
@@ -7,6 +8,9 @@ from pathlib import Path
 project_dir = Path(__file__).resolve().parents[2]
 
 def main():
+    logger = logging.getLogger(__name__)
+    logger.info('extracting features and targets from processed data')
+
     paths = (project_dir / 'data' / 'processed').glob('*.json')
     for path in paths:
         file_prefix = get_file_prefix(path)
@@ -51,4 +55,7 @@ def write_to_file(features, file_prefix):
 
 
 if __name__ == '__main__':
+    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logging.basicConfig(level=logging.INFO, format=log_fmt)
+
     main()
