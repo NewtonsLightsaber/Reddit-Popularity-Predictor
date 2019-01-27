@@ -51,7 +51,7 @@ def preprocess():
         validation_data.json
         test_data.json
     """
-    paths = (project_dir / 'data' / 'interim').glob('*.json')
+    paths = (project_dir / 'data' / 'processed').glob('*.json')
     for path in paths:
         dataset = get_dataset(path)
         filename = str(path).split('/')[-1]
@@ -82,6 +82,9 @@ def preprocess_dataset(dataset):
         # Extract word count feature
         data['x_counts'] = get_x_counts(data, most_freq_words)
 
+        # Add Comment Length
+        data['comment_length'] = len(data['text'])
+
     return dataset
 
 
@@ -102,7 +105,7 @@ def get_x_counts(data, most_freq_words):
 
 def write_most_freq_words():
     training_set = get_dataset(
-        project_dir / 'data' / 'interim' / 'training_data.json')
+        project_dir / 'data' / 'processed' / 'training_data.json')
     most_freq_words = get_most_freq_words(training_set)
     with open(project_dir / 'reports' / 'words.txt', 'w') as fout:
         for i, word in enumerate(most_freq_words):
