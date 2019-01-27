@@ -21,7 +21,7 @@ def main():
 
 
 def split_data():
-    output_path = project_dir / 'data' / 'interim'
+    output_path = project_dir / 'data' / 'processed'
     files = [
         'training_data.json',
         'validation_data.json',
