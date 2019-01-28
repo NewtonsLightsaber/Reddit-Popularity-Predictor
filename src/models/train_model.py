@@ -51,7 +51,7 @@ class ClosedForm(LinearRegression):
             X_transp.dot(Y_train)
             )
         return self.w
-
+'''
 
 class gradientDescent(LinearRegression):
 
@@ -78,7 +78,7 @@ class gradientDescent(LinearRegression):
             print('and i = ', i)
         print('This is W List' , wList )
         return wList
-                                         
+'''                                         
                                          
 class GradientDescent(LinearRegression):
     def train(self, X_train, Y_train, w_0, beta, eta_0, eps):
