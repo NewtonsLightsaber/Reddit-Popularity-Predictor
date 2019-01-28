@@ -6,6 +6,8 @@ import plotly.graph_objs as go
 import plotly.plotly as py
 import sys
 from pathlib import Path
+import datetime
+from datetime import timedelta
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -54,15 +56,14 @@ class ClosedForm(LinearRegression):
         return self.w
 
 
-class gradientDescent(LinearRegression):
-
+class GradientDescent1(LinearRegression):
     def gradErr(w, X_train, Y_train):
         gradObj = LinearRegression()
         errArg = (Y_train - gradObj.predict(w, X_train)) #(y-Xw)
         finalGradErr = (errArg.T).dot(errArg) #Err = (y-Xw)T * (y-Xw)
         return finalGradErr
 
-    def train(X_train, Y_train):
+    def train(self, X_train, Y_train):
         x = X_train
         epsilon = sys.float_info.epsilon #epsilon
         eta0 = 10 ** (-7)
@@ -79,7 +80,7 @@ class gradientDescent(LinearRegression):
             print('and i = ', i)
         print('This is W List' , wList )
         return wList
-                                         
+
                                          
 class GradientDescent(LinearRegression):
     def train(self, X_train, Y_train, w_0, beta, eta_0, eps):
@@ -137,15 +138,29 @@ def main():
     hparams = {
         'w_0': np.zeros((X_train.shape[1], 1)),
         'beta': 1e-7, # prof: <1e-3
-        'eta_0': 7e-6, # prof: <1e-5
+        'eta_0': 1e-6, # prof: <1e-5
         'eps': 1e-6,
     }
 
+
+    time_cf_start = datetime.datetime.now()
     closedForm.train(X_train, Y_train)
+    time_cf_end = datetime.datetime.now()
     print('closed form mse: %.16f' % closedForm.mse(X_train, Y_train))
+
+    time = time_cf_end - time_cf_start
+    print(time.microseconds)
     logger.info('finish closed form model training')
     #print(closedForm.rmse(X_train, Y_train))
+
+    time_gd_start = datetime.datetime.now()
+
     gradientDescent.train(X_train, Y_train, **hparams)
+
+    time_gd_end = datetime.datetime.now()
+    time2 = time_gd_end-time_gd_start
+    print(time2.microseconds)
+
     logger.info('trained gradient descent model')
     print('gradescent mse: %.16f' % gradientDescent.mse(X_train, Y_train))
     save_models([closedForm, gradientDescent], filenames)
