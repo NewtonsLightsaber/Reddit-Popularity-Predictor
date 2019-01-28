@@ -40,6 +40,7 @@ def get_XY(dataset):
             + [data['controversiality']]
             + [data['children']]
             + data['x_counts']
+            + [data['comment_length]]
             + [bias_term])
 
     X = np.array(X)
