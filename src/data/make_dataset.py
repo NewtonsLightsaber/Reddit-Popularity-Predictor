@@ -3,6 +3,10 @@ import logging
 import json
 from pathlib import Path
 from collections import Counter
+import nltk
+from nltk.stem.snowball import SnowballStemmer
+
+stemmer = SnowballStemmer("english")
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -81,6 +85,17 @@ def preprocess_dataset(dataset):
 
         # Extract word count feature
         data['x_counts'] = get_x_counts(data, most_freq_words)
+        
+        # Add Comment Length
+        data['comment_length'] = len(data['text'])
+
+
+        # Stemming as a feature
+        # nltk library
+        # ref: https://www.nltk.org
+        # to be solved: stemmed words are string.
+        # Need to compare with original comment to get involved into the matrix.
+        #data['stemmed'] = stemmer.stem(data['text'])
 
     return dataset
 
