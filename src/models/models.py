@@ -130,13 +130,13 @@ class GradientDescent(LinearRegression):
             self.w = w_prev - alpha*grad
 
             wDiff = norm(self.w - w_prev)
+            print('i: %d' % i)
             print('wDiff: %.16f' % wDiff)
             print('mse: %.16f' % self.mse(X_train, Y_train))
             if wDiff <= eps:
                 break
             else:
                 i += 1
-                print('i: %d' % i)
                 w_prev[:] = self.w
 
         return self.w
