@@ -52,7 +52,7 @@ class ClosedForm(LinearRegression):
         return self.w
 
 
-class gradientDescent(LinearRegression):
+"""class gradientDescent(LinearRegression):
 
     def gradErr(w, X_train, Y_train):
         gradObj = LinearRegression()
@@ -72,9 +72,10 @@ class gradientDescent(LinearRegression):
             wdiff = abs(wlist[i+1] - wlist[i])
             while(wdiff > epsilon):
                 wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
-            i+1
+            i = i + 1
 
         return wList
+"""
 
 
 class GradientDescent(LinearRegression):
@@ -110,9 +111,9 @@ class GradientDescent(LinearRegression):
         Output:
             Estimated weights w
         """
-        save_hyperparams([w_0, beta, eta_0. eps])
+        self.save_hyperparams([w_0, beta, eta_0, eps])
 
-        n = y.shape[0]
+        n = Y_train.shape[0]
         w_prev = w_0
         norm = lambda x : np.linalg.norm(x)
         twoXTX = 2*X_train.T.dot(X_train)
@@ -141,5 +142,5 @@ class GradientDescent(LinearRegression):
         return self.w
 
 
-    def save_hyperparams(hparams):
+    def save_hyperparams(self, hparams):
         self.w_0, self.beta, self.eta_0, self.eps = hparams

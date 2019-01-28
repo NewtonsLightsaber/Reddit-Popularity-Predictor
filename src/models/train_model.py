@@ -54,7 +54,7 @@ def get_XY_train():
     input_path = get_features_path()
 
     for file in files:
-        XY_train += pickle.load(open(input_path / file, 'rb'))
+        XY_train.append(pickle.load(open(input_path / file, 'rb')))
 
     return XY_train
 

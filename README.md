@@ -31,15 +31,15 @@ The dataset is already split into 3 files in `data/processed/`:
     training_data.json
     validation_data.json
 
-The features are also built and ready in `src/features/`:
+The features are built as NumPy matrices in `src/features/`:
 
     # src/features/
-    test_X_counts.json
-    test_y.json
-    training_X_counts.json
-    training_y.json
-    validation_X_counts.json
-    validation_y.json
+    training_X.pkl
+    training_X_160.pkl
+    training_X_60.pkl
+    training_X_no_text.pkl
+    # ...
+
 
 The commands for both are:
 
