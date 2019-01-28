@@ -1,125 +1,14 @@
 # -*- coding: utf-8 -*-
+""" Authors: Le Nhat Hung, Negin Ashr """
 import logging
 import pickle
 import numpy as np
 import plotly.graph_objs as go
 import plotly.plotly as py
 from pathlib import Path
+from models import *
 
 project_dir = Path(__file__).resolve().parents[2]
-
-class LinearRegression:
-    w = None
-
-    def is_trained(self):
-        return self.w is not None
-
-    def predict(self, X):
-        """
-        Return the prediction vector y.
-        Side effect: raise Exception if model model isn't trained
-                    i.e. self.w is None
-        """
-        if self.w is not None:
-            return np.dot(X, self.w)
-        else:
-            raise Exception('Model is not trained.')
-
-    def mse(self, X, Y):
-        """
-        Return the Mean Squared Error of the predicted vector
-        with regards to the target vector
-        """
-        return np.square(self.predict(X) - Y).mean()
-
-
-class ClosedForm(LinearRegression):
-    """
-    Closed form linear regression solution.
-    Inherit LinearRegression class.
-    """
-
-    def train(self, X_train, Y_train):
-        """
-        Save weight vector w as field of the instance,
-        from the features and labels matrixes.
-        Side effect: return weights w
-        """
-        X_transp = X_train.T
-        self.w = np.dot(
-            np.linalg.inv( X_transp.dot(X_train) ),
-            X_transp.dot(Y_train)
-            )
-        return self.w
-
-
-class gradientDescent(LinearRegression):
-
-    def gradErr(w, X_train, Y_train):
-        gradObj = LinearRegression()
-        errArg = (Y_train - gradObj.predict(w, X_train)) #(y-Xw)
-        finalGradErr = (errArg.T).dot(errArg) #Err = (y-Xw)T * (y-Xw)
-        return finalGradErr
-
-    def train(self, X_train, Y_train):
-        x = X_train
-        epsilon = sys.float_info.epsilon #epsilon
-        eta0 = 10 ** (-7)
-        beta = 10 ** (-4)
-        alpha = eta0 / (1+beta) #steps
-        wList = []
-        i = 0
-        while True:
-            wdiff = abs(wlist[i+1] - wlist[i])
-            while(wdiff > epsilon):
-                wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
-            i+1
-        
-        return wList
-                                         
-                                         
-class GradientDescent(LinearRegression):
-    def train(self, X_train, Y_train, w_0, beta, eta_0, eps):
-        """
-        Save weight vector w as field of the instance.
-        Inputs:
-            X_train: data matrix,
-            Y_train: targets,
-            w_0: initial weights,
-            beta: speed of decay
-            eta_0: initial learning rate
-            eps: stopping tolerance
-
-        Output:
-            Estimated weights w
-        """
-        X, y = X_train, Y_train
-        n = y.shape[0]
-        w_prev = w_0
-        norm = lambda x : np.linalg.norm(x)
-        i = 1
-
-        #print('w_0: '); print(w_0)
-        print('beta: %.16f' % beta)
-        print('eta_0: %.16f' % eta_0)
-
-        while True:
-            alpha = eta_0 / (1 + beta * i) / n
-            grad = X.T.dot(X).dot(w_prev) - X.T.dot(y)
-            self.w = w_prev - 2 * alpha * grad
-
-            loss = norm(self.w - w_prev)
-            print('loss: %.16f' % loss)
-            print('mse: %.16f' % self.mse(X, y))
-            if loss <= eps:
-                break
-            else:
-                i += 1
-                print('i: %d' % i)
-                w_prev[:] = self.w
-
-        return self.w
-
 
 def main():
     """
@@ -161,10 +50,10 @@ def get_XY_train():
         'training_y.pkl',
     ]
     XY_train = []
-    input_path = project_dir / 'src' / 'features'
+    input_path = get_features_path()
 
     for file in files:
-        XY_train.append(pickle.load(open(input_path / file, 'rb')))
+        XY_train += pickle.load(open(input_path / file, 'rb'))
 
     return XY_train
 
@@ -174,6 +63,10 @@ def save_models(models, filenames):
     for model, name in zip(models, filenames):
         if model.is_trained():
             pickle.dump(model, open(output_path / name, 'wb'))
+
+
+def get_features_path():
+    return project_dir / 'src' / 'features'
 
 
 if __name__ == '__main__':
