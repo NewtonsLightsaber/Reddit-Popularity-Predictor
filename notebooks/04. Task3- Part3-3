@@ -1,0 +1,15 @@
+Task 3 : Experiments
+
+3-3 : Comparison of closed form with/without length feature in train and validation set
+
+MSE:
+
+With Length Feature:
+Train : 1.0477763217987115
+Validation : 0.7792673592365509
+
+Without Length Feature:
+Train: 1.0477454392805476
+Validation: 0.7792510233140356
+
+MSE decreased a little bit. (no remarkable change has been found)
