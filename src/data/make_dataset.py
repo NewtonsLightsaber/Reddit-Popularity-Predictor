@@ -95,7 +95,7 @@ def preprocess_dataset(dataset):
         # ref: https://www.nltk.org
         # to be solved: stemmed words are string.
         # Need to compare with original comment to get involved into the matrix.
-        #data['stemmed'] = stemmer.stem(data['text'])
+        data['stemmed'] = stemmer.stem(data['text'])
 
     return dataset
 
