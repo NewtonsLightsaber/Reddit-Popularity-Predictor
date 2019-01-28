@@ -12,8 +12,7 @@ project_dir = Path(__file__).resolve().parents[2]
 def main():
     X_train, Y_train = get_XY_train()
     closedForm = get_model(project_dir / 'models' / 'ClosedForm.pkl')
-    print(closedForm.rmse(X_train, Y_train))
-
+    gradientDescent = get_model(project_dir / 'models' / 'GradientDescent.pkl')
 
 def get_model(path):
     model = pickle.load(open(path, 'rb'))

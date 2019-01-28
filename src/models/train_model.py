@@ -74,6 +74,10 @@ class GradientDescent(LinearRegression):
         norm = lambda x : np.linalg.norm(x)
         i = 1
 
+        #print('w_0: '); print(w_0)
+        print('beta: %.16f' % beta)
+        print('eta_0: %.16f' % eta_0)
+
         while True:
             alpha = eta_0 / (1 + beta * i) / n
             grad = X.T.dot(X).dot(w_prev) - X.T.dot(y)
@@ -81,6 +85,7 @@ class GradientDescent(LinearRegression):
 
             loss = norm(self.w - w_prev)
             print('loss: %.16f' % loss)
+            print('mse: %.16f' % self.mse(X, y))
             if loss <= eps:
                 break
             else:
@@ -108,8 +113,10 @@ def main():
     ]
     hparams = {
         'w_0': np.zeros((X_train.shape[1], 1)),
-        'beta': 1e-7, # prof: <1e-3
-        'eta_0': 7e-6, # prof: <1e-5
+        #'w_0': np.random.rand(X_train.shape[1], 1),
+        #'beta': 1e-4, # prof: <1e-3
+        'beta': 0,
+        'eta_0': 1e-3, # prof: <1e-5
         'eps': 1e-6,
     }
 
