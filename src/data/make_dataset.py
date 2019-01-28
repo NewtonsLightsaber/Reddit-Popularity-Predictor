@@ -81,6 +81,9 @@ def preprocess_dataset(dataset):
 
         # Extract word count feature
         data['x_counts'] = get_x_counts(data, most_freq_words)
+        
+        # Add Comment Length
+        data['comment_length'] = len(data['text'])
 
     return dataset
 
