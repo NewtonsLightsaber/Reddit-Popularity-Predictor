@@ -36,7 +36,7 @@ def get_XY(dataset):
     for data in dataset:
         y.append([data['popularity_score']])
         X.append(
-            [data['is_root']]
+              [data['is_root']]
             + [data['controversiality']]
             + [data['children']]
             + data['x_counts']
@@ -48,6 +48,13 @@ def get_XY(dataset):
 
 
 def write_to_file(features, file_prefix):
+    """
+    For each set (training, validation, test), save the following versions:
+        1. 'no_text': no text features
+        2. '60': top 60 words
+        3. '160': top 160 words (basic, with stop words like 'the' or 'a' included)
+        4. Newly added features included
+    """
     output_path = project_dir / 'src' / 'features'
     for feature, suffix in zip(features, ['X', 'y']):
         with open(output_path / (file_prefix+'_'+suffix+'.pkl'), 'wb') as fout:

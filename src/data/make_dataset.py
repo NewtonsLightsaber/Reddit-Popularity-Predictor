@@ -104,7 +104,7 @@ def write_most_freq_words():
     training_set = get_dataset(
         project_dir / 'data' / 'interim' / 'training_data.json')
     most_freq_words = get_most_freq_words(training_set)
-    with open(project_dir / 'reports' / 'words.txt', 'w') as fout:
+    with open(project_dir / 'words.txt', 'w') as fout:
         for i, word in enumerate(most_freq_words):
             fout.write('%d. %s\n' % (i+1, word))
 
