@@ -90,9 +90,12 @@ class GradientDescent(LinearRegression):
     w_0, beta, eta_0, eps = [None] * 4
     num_iterations = None
 
-    def __init__(self, w=None, hparams=None):
-        if w is not None and hparams is not None:
+    def __init__(self, w=None, hparams=None, num_iterations=None):
+        if w is not None and \
+                hparams is not None and \
+                num_iterations is not None:
             self.w = w
+            self.num_iterations = num_iterations
             self.save_hyperparams(hparams)
 
     def __str__(self):

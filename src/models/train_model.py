@@ -102,7 +102,10 @@ def train_models(model_X_pairs, Y, hparams=None):
         else:
             hparams['w_0'] = np.zeros((X.shape[1], 1))
             model.train(X, Y, **hparams)
-            model = GradientDescent(w=model.w, hparams=model.get_hyperparams())
+            model = GradientDescent(
+                w=model.w,
+                hparams=model.get_hyperparams(),
+                num_iterations=model.num_iterations)
 
         models.append(model)
 
