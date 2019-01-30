@@ -4,11 +4,16 @@ import json
 from pathlib import Path
 from collections import Counter
 import nltk
+#from nltk.stem.snowball import SnowballStemmer
 from nltk.stem import PorterStemmer
 
-stemmer = SnowballStemmer("english")
+
+# stemmer = SnowballStemmer("english")
+# To compare Snowball and PorterStemmer, just need to change the function name before data['text']
+ps = PorterStemmer()
 
 project_dir = Path(__file__).resolve().parents[2]
+
 
 def main():
     """
@@ -22,15 +27,17 @@ def main():
     split_data()
     preprocess()
     write_most_freq_words()
+   # stem_words()
 
 
 def split_data():
-    output_path = project_dir / 'data' / 'interim'
+    # output_path = project_dir / 'data' / 'interim'
+    output_path = project_dir / 'data'
     files = [
         'training_data.json',
         'validation_data.json',
         'test_data.json',
-        ]
+    ]
     dataset = get_dataset(project_dir / 'data' / 'raw' / 'proj1_data.json')
     training = dataset[0:10000]
     validation = dataset[10000:11000]
@@ -55,7 +62,8 @@ def preprocess():
         validation_data.json
         test_data.json
     """
-    paths = (project_dir / 'data' / 'interim').glob('*.json')
+    # paths = (project_dir / 'data' / 'interim').glob('*.json')
+    paths = (project_dir / 'data').glob('*.json')
     for path in paths:
         dataset = get_dataset(path)
         filename = str(path).split('/')[-1]
@@ -89,8 +97,12 @@ def preprocess_dataset(dataset):
         # Add Comment Length
         data['comment_length'] = len(data['text'])
 
-
-
+        # Stemming as a feature
+        # nltk library
+        # ref: https://www.nltk.org
+        # to be solved: stemmed words are string.
+        # Need to compare with original comment to get involved into the matrix.
+        #data['stemmed'] = stemmer.stem(data['text'])
 
     return dataset
 
@@ -99,13 +111,10 @@ def get_most_freq_words(dataset):
     words = [word for data in dataset for word in preprocess_text(data['text'])]
     return [word for (word, _) in Counter(words).most_common(160)]
 
-
+# stem before x_counts
 def get_x_counts(data, most_freq_words):
     x_counts = [0] * 160
-    # Stemming as a feature
-    # nltk library
-    # ref: https://www.nltk.org
-    counts = dict(Counter(preprocess_text(stemmer.stem(data['text']))))
+    counts = dict(Counter(preprocess_text(ps.stem(data['text']))))
     #counts = dict(Counter(preprocess_text(data['text'])))
     for word, count in counts.items():
         if word in most_freq_words:
@@ -113,15 +122,14 @@ def get_x_counts(data, most_freq_words):
 
     return x_counts
 
-
 def write_most_freq_words():
     training_set = get_dataset(
-        project_dir / 'data' / 'interim' / 'training_data.json')
+        # project_dir / 'data' / 'interim' / 'training_data.json')
+        project_dir / 'data' / 'training_data.json')
     most_freq_words = get_most_freq_words(training_set)
     with open(project_dir / 'reports' / 'words.txt', 'w') as fout:
         for i, word in enumerate(most_freq_words):
-            fout.write('%d. %s\n' % (i+1, word))
-
+            fout.write('%d. %s\n' % (i + 1, word))
 
 def preprocess_text(text):
     return text.lower().split()
