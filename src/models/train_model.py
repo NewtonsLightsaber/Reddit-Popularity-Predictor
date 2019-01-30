@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 import datetime
 from datetime import timedelta
+import matplotlib.pyplot as plt
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -117,7 +118,20 @@ class GradientDescent(LinearRegression):
                 print('i: %d' % i)
                 w_prev[:] = self.w
 
+        plt.axis([0, 10, 0, 1])
+
+        for i in range(10):
+            y = np.random.random()
+            plt.scatter(i, y)
+            plt.pause(0.05)
+
+        plt.show()
+        for i in range(len(X[1:100])):
+            plt.figure()
+            plt.plot(i, loss)
+
         return self.w
+
 
 
 def main():
@@ -153,6 +167,7 @@ def main():
     logger.info('finish closed form model training')
     #print(closedForm.rmse(X_train, Y_train))
 
+
     time_gd_start = datetime.datetime.now()
 
     gradientDescent.train(X_train, Y_train, **hparams)
@@ -164,6 +179,7 @@ def main():
     logger.info('trained gradient descent model')
     print('gradescent mse: %.16f' % gradientDescent.mse(X_train, Y_train))
     save_models([closedForm, gradientDescent], filenames)
+
 
 
 def get_XY_train():
