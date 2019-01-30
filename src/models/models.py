@@ -56,8 +56,8 @@ class ClosedForm(LinearRegression):
         return self.w
 
 
-"""class gradientDescent(LinearRegression):
-
+"""
+class GradientDescent1(LinearRegression):
     def gradErr(w, X_train, Y_train):
         gradObj = LinearRegression()
         errArg = (Y_train - gradObj.predict(w, X_train)) #(y-Xw)
@@ -70,14 +70,16 @@ class ClosedForm(LinearRegression):
         eta0 = 10 ** (-7)
         beta = 10 ** (-4)
         alpha = eta0 / (1+beta) #steps
+        print('alpha = ', alpha)
         wList = []
         i = 0
-        while True:
-            wdiff = abs(wlist[i+1] - wlist[i])
-            while(wdiff > epsilon):
-                wList[i+1] = wList[i] - ( alpha * (2* (x.T).dot(x).dot(wList[i]) - (x.T).dot(Y_train)) #or derivative(gradErr)
-            i = i + 1
-
+        wdiff = abs(wList[i+1] - wList[i])
+        while(wdiff > epsilon):
+            wList[i+1] = wList[i] - ( alpha * (2* x.T.dot(x).dot(wList[i]) - x.T.dot(Y_train))) #or derivative(gradErr)
+            print('Generating w, w = ' , wList[i + 1])
+            i+=1
+            print('and i = ', i)
+        print('This is W List' , wList )
         return wList
 """
 
