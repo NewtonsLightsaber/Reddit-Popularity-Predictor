@@ -88,6 +88,7 @@ class GradientDescent(LinearRegression):
     Inherits LinearRegression class.
     """
     w_0, beta, eta_0, eps = [None] * 4
+    num_iterations = None
 
     def __init__(self, w=None, hparams=None):
         if w is not None and hparams is not None:
@@ -129,9 +130,10 @@ class GradientDescent(LinearRegression):
         twoXTy = 2*X_train.T.dot(Y_train)
         i = 1
 
-        #print('w_0: '); print(w_0)
+        print('w_0: %s' % [w for [w] in w_0.tolist()])
         print('beta: %.16f' % beta)
         print('eta_0: %.16f' % eta_0)
+        print('eps: %.16f' % eps)
 
         while True:
             alpha = eta_0 / (1 + beta * i) / n
@@ -147,6 +149,8 @@ class GradientDescent(LinearRegression):
             else:
                 i += 1
                 w_prev[:] = self.w
+
+        self.num_iterations = i
 
         return self.w
 

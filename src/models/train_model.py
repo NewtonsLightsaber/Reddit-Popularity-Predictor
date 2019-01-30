@@ -62,21 +62,19 @@ def main():
     """
     Train gradient descent models
     """
-    # Hyperparameters
-    hparams = {
-        'w_0': np.zeros((X_train.shape[1], 1)),
-        #'w_0': np.random.rand(X_train.shape[1], 1),
-        'beta': 1e-4, # prof: < 1e-3
-        #'beta': 0,
-        'eta_0': 1e-3, # prof: < 1e-5
-        'eps': 1e-6,
-    }
     model_X_pairs = (
         (gradientDescent, X_train),
         (gradientDescent160, X_train_160),
         (gradientDescent60, X_train_60),
         (gradientDescentNoText, X_train_no_text),
     )
+
+    # Hyperparameters
+    hparams = {
+        'beta': 1e-4, # prof: < 1e-3
+        'eta_0': 1e-5, # prof: < 1e-5
+        'eps': 1e-6,
+    }
     gradientDescent, \
     gradientDescent160, \
     gradientDescent60, \
@@ -100,10 +98,13 @@ def train_models(model_X_pairs, Y, hparams=None):
     for model, X in model_X_pairs:
         if hparams is None:
             model.train(X, Y)
-            models.append(ClosedForm(w=model.w))
+            model = ClosedForm(w=model.w)
         else:
+            hparams['w_0'] = np.zeros((X.shape[1], 1))
             model.train(X, Y, **hparams)
-            models.append(GradientDescent(w=model.w, hparams=model.get_hyperparams()))
+            model = GradientDescent(w=model.w, hparams=model.get_hyperparams())
+
+        models.append(model)
 
     return models
 

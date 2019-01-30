@@ -102,8 +102,6 @@ def get_X_no_text(dataset):
             + [bias_term])
 
     X = np.array(X)
-    print('in get_X_no_text')
-    print(X)
     return X
 
 

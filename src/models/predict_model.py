@@ -28,19 +28,38 @@ def main():
         'ClosedForm_160.pkl',
         'ClosedForm_60.pkl',
         'ClosedForm_no_text.pkl',
+        'GradientDescent.pkl',
+        'GradientDescent_160.pkl',
+        'GradientDescent_60.pkl',
+        'GradientDescent_no_text.pkl',
     )
-    closedForm, closedForm160, closedForm60, closedFormNoText = get_models(
+    closedForm, \
+    closedForm160, \
+    closedForm60, \
+    closedFormNoText, \
+    gradientDescent, \
+    gradientDescent160, \
+    gradientDescent60, \
+    gradientDescentNoText = get_models(
         models_path,
         filenames=filenames,
     )
+
+    print(gradientDescent.w_0[0])
+    print(gradientDescent.w[0])
+
     model_name_pairs = (
         (closedForm, 'ClosedForm'),
         (closedForm160, 'ClosedForm_160'),
         (closedForm60, 'ClosedForm_60'),
         (closedFormNoText, 'ClosedForm_no_text'),
+        (gradientDescent, 'GradientDescent'),
+        (gradientDescent160, 'GradientDescent_160'),
+        (gradientDescent60, 'GradientDescent_60'),
+        (gradientDescentNoText, 'GradientDescent_no_text'),
     )
-    X_train_list = (X_train, X_train_160, X_train_60, X_train_no_text)
-    X_validate_list = (X_validate, X_validate_160, X_validate_60, X_validate_no_text)
+    X_train_list = [X_train, X_train_160, X_train_60, X_train_no_text] * 2
+    X_validate_list = [X_validate, X_validate_160, X_validate_60, X_validate_no_text] * 2
 
     predictions_train = get_predictions(model_name_pairs, X_train_list, Y_train, 'train')
     predictions_validate = get_predictions(model_name_pairs, X_validate_list, Y_validate, 'validate')
@@ -50,14 +69,41 @@ def main():
 
 
 def get_predictions(model_name_pairs, X_list, Y, suffix):
+    """
+    Return a list of dictionaries of structure:
+        [
+            ... ,
+            {
+                'name': i.g. ClosedForm_60_train,
+                'hparams': {'w_0': ... , 'beta': ... , 'eta_0': ... , 'eps': ... },
+                'num_iterations': ... ,
+                'y_predicted': ... ,
+                'mse': ...
+            }
+            ...
+        ]
+    """
     predictions = []
     for (model, name), X in zip(model_name_pairs, X_list):
         print('%s %s:' % (name, suffix))
-        predict(model, X, Y)
+        print('MSE: %.16f' % model.mse(X, Y))
+
+        if isinstance(model, GradientDescent):
+            hparams = model.get_hyperparams()
+            #hparams['w_0'] = [w for [w] in hparams['w_0'].tolist()]
+            """
+            For unknown reasons, the w_0 hparam values are distorted at this step.
+            Since all gradient descent models had a zero vector for w_0, we'll
+            hardcode it.
+            """
+            hparams['w_0'] = [0] * hparams['w_0'].shape[0]
+        else:
+            hparams = None
 
         prediction = {
             'name': name + '_' + suffix,
-            'hparams': model.get_hyperparams() if isinstance(model, GradientDescent) else None,
+            'hparams': hparams,
+            'num_iterations': model.num_iterations if isinstance(model, GradientDescent) else None,
             'y_predicted': [y for [y] in model.predict(X).tolist()],
             'mse': model.mse(X, Y),
         }
@@ -67,11 +113,9 @@ def get_predictions(model_name_pairs, X_list, Y, suffix):
 
 
 def save_predictions(predictions, path):
+    logger = logging.getLogger(__name__)
     json.dump(predictions, open(path, 'w'))
-
-
-def predict(model, X, Y):
-    print('MSE: %.16f' % model.mse(X, Y))
+    logger.info('saved predictions to %s' % path)
 
 
 def get_XY_validate(features_path):
