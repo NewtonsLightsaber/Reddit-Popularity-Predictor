@@ -117,19 +117,6 @@ class GradientDescent(LinearRegression):
                 i += 1
                 print('i: %d' % i)
                 w_prev[:] = self.w
-
-        plt.axis([0, 10, 0, 1])
-
-        for i in range(10):
-            y = np.random.random()
-            plt.scatter(i, y)
-            plt.pause(0.05)
-
-        plt.show()
-        for i in range(len(X[1:100])):
-            plt.figure()
-            plt.plot(i, loss)
-
         return self.w
 
 
