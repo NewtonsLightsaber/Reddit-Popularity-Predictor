@@ -8,6 +8,7 @@ import plotly.plotly as py
 import sys
 from pathlib import Path
 from models import *
+import datetime
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -58,7 +59,6 @@ def main():
     save_models(model_filename_pairs, output_path)
     logger.info('finished closed form models training')
 
-
     """
     Train gradient descent models
     """
@@ -72,7 +72,9 @@ def main():
     # Hyperparameters
     hparams = {
         'beta': 1e-4, # prof: < 1e-3
+        #'beta': 1e-7,
         'eta_0': 1e-5, # prof: < 1e-5
+        #'eta_0': 1e-6,
         'eps': 1e-6,
     }
     gradientDescent, \
@@ -97,13 +99,23 @@ def train_models(model_X_pairs, Y, hparams=None):
     models = []
     for model, X in model_X_pairs:
         if hparams is None:
+            time_start = datetime.datetime.now()
             model.train(X, Y)
+            time_end = datetime.datetime.now()
             model = ClosedForm(w=model.w)
         else:
             hparams['w_0'] = np.zeros((X.shape[1], 1))
+            time_start = datetime.datetime.now()
             model.train(X, Y, **hparams)
-            model = GradientDescent(w=model.w, hparams=model.get_hyperparams())
+            time_end = datetime.datetime.now()
+            model = GradientDescent(
+                w=model.w,
+                hparams=model.get_hyperparams(),
+                num_iterations=model.num_iterations)
 
+        print('time: ', end='')
+        print((time_end - time_start).microseconds, end=' ')
+        print('ms')
         models.append(model)
 
     return models

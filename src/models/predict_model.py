@@ -18,10 +18,11 @@ def main():
 
     features_path = project_dir / 'src' / 'features'
     models_path = project_dir / 'models'
-    output_path = project_dir / 'reports'
+    predictions_path = project_dir / 'reports'
 
     X_train, X_train_160, X_train_60, X_train_no_text, Y_train = get_XY_train(features_path)
     X_validate, X_validate_160, X_validate_60, X_validate_no_text, Y_validate = get_XY_validate(features_path)
+    X_test, X_test_160, X_test_60, X_test_no_text, Y_test = get_XY_test(features_path)
 
     filenames = (
         'ClosedForm.pkl',
@@ -60,12 +61,15 @@ def main():
     )
     X_train_list = [X_train, X_train_160, X_train_60, X_train_no_text] * 2
     X_validate_list = [X_validate, X_validate_160, X_validate_60, X_validate_no_text] * 2
+    X_test_list = [X_test, X_test_160, X_test_60, X_test_no_text] * 2
 
     predictions_train = get_predictions(model_name_pairs, X_train_list, Y_train, 'train')
     predictions_validate = get_predictions(model_name_pairs, X_validate_list, Y_validate, 'validate')
+    predictions_test = get_predictions(model_name_pairs, X_test_list, Y_test, 'test')
 
-    save_predictions(predictions_train, output_path / 'predictions_train.json')
-    save_predictions(predictions_validate, output_path / 'predictions_validate.json')
+    save_predictions(predictions_train, predictions_path / 'predictions_train.json')
+    save_predictions(predictions_validate, predictions_path / 'predictions_validate.json')
+    save_predictions(predictions_test, predictions_path / 'predictions_test.json')
 
 
 def get_predictions(model_name_pairs, X_list, Y, suffix):

@@ -114,7 +114,9 @@ def get_X_full(dataset):
               [data['is_root']]
             + [data['controversiality']]
             + [data['children']]
+            + [data['length']]
             + data['x_counts']
+            + data['stem']
             + [bias_term])
 
     X = np.array(X)

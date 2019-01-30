@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-* Python 3.7
+* Python 3 (3.7 was used for this project)
 * `miniconda` (or `anaconda`)
 
     ```
@@ -61,6 +61,12 @@ Train and save models to `models/` with:
     # Check environment requirements, build datasets and features,
     # then run src/models/train_model.py to train and save models to models/
     make train
+
+### Make predictions
+Predictions are json lists in `reports/`.  
+Make predicions with:
+
+    make predict
 
 ## Project Organization
 
