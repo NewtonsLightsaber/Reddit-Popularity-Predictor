@@ -46,7 +46,7 @@ def main():
     predictions_validate = get_predictions(model_name_pairs, X_validate_list, Y_validate, 'validate')
 
     save_predictions(predictions_train, output_path / 'predictions_train.json')
-    save_predictions(predictions_validate, output_path / 'prediction_validate.json')
+    save_predictions(predictions_validate, output_path / 'predictions_validate.json')
 
 
 def get_predictions(model_name_pairs, X_list, Y, suffix):
