@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from collections import Counter
 import nltk
-from nltk.stem.snowball import SnowballStemmer
+from nltk.stem import PorterStemmer
 
 stemmer = SnowballStemmer("english")
 
