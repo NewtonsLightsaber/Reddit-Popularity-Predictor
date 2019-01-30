@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-* Python 3.7
+* Python 3 (3.7 was used for this project)
 * `miniconda` (or `anaconda`)
 
     ```
