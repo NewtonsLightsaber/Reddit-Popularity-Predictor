@@ -9,8 +9,6 @@ import sys
 from pathlib import Path
 from models import *
 import datetime
-#from datetime import timedelta
-import matplotlib.pyplot as plt
 
 project_dir = Path(__file__).resolve().parents[2]
 
