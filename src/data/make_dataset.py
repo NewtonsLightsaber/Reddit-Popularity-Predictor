@@ -90,12 +90,7 @@ def preprocess_dataset(dataset):
         data['comment_length'] = len(data['text'])
 
 
-        # Stemming as a feature
-        # nltk library
-        # ref: https://www.nltk.org
-        # to be solved: stemmed words are string.
-        # Need to compare with original comment to get involved into the matrix.
-        data['stemmed'] = stemmer.stem(data['text'])
+
 
     return dataset
 
@@ -107,7 +102,11 @@ def get_most_freq_words(dataset):
 
 def get_x_counts(data, most_freq_words):
     x_counts = [0] * 160
-    counts = dict(Counter(preprocess_text(data['text'])))
+    # Stemming as a feature
+    # nltk library
+    # ref: https://www.nltk.org
+    counts = dict(Counter(preprocess_text(stemmer.stem(data['text']))))
+    #counts = dict(Counter(preprocess_text(data['text'])))
     for word, count in counts.items():
         if word in most_freq_words:
             x_counts[most_freq_words.index(word)] = count
