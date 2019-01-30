@@ -26,7 +26,12 @@ def main():
     features_path = project_dir / 'src' / 'features'
     output_path = project_dir / 'models'
 
-    X_train, X_train_160, X_train_60, X_train_no_text, Y_train = get_XY_train(features_path)
+    X_train, \
+    X_train_160, \
+    X_train_60, \
+    X_train_no_text, \
+    Y_train = get_XY_train(features_path)
+
     closedForm, closedForm160, closedForm60, closedFormNoText = [ClosedForm()] * 4
     gradientDescent, gradientDescent160, gradientDescent60, gradientDescentNoText = [GradientDescent()] * 4
 
@@ -36,9 +41,28 @@ def main():
         (closedForm60, X_train_60),
         (closedFormNoText, X_train_no_text),
     )
-    train_models(model_X_pairs, Y_train)
+
+    """
+    Train closed form models
+    """
+    closedForm, \
+    closedForm160, \
+    closedForm60, \
+    closedFormNoText = train_models(model_X_pairs, Y_train)
+    model_filename_pairs = (
+        (closedForm, 'ClosedForm.pkl'),
+        (closedForm160, 'ClosedForm_160.pkl'),
+        (closedForm60, 'ClosedForm_60.pkl'),
+        (closedFormNoText, 'ClosedForm_no_text.pkl'),
+    )
+    save_models(model_filename_pairs, output_path)
     logger.info('finished closed form models training')
 
+
+    """
+    Train gradient descent models
+    """
+    # Hyperparameters
     hparams = {
         'w_0': np.zeros((X_train.shape[1], 1)),
         #'w_0': np.random.rand(X_train.shape[1], 1),
@@ -53,33 +77,33 @@ def main():
         (gradientDescent60, X_train_60),
         (gradientDescentNoText, X_train_no_text),
     )
-    gradientDescent.train(X_train, Y_train, **hparams)
-    logger.info('finished gradient descent models training')
-
+    gradientDescent, \
+    gradientDescent160, \
+    gradientDescent60, \
+    gradientDescentNoText = train_models(model_X_pairs, Y_train, hparams=hparams)
     model_filename_pairs = (
-        (closedForm, 'ClosedForm.pkl'),
-        (closedForm160, 'ClosedForm_160.pkl'),
-        (closedForm60, 'ClosedForm_60.pkl'),
-        (closedFormNoText, 'ClosedForm_no_text.pkl'),
-        (gradientDescent, 'GradientDescent.pkl',)
+        (gradientDescent, 'GradientDescent.pkl'),
+        (gradientDescent160, 'GradientDescent_160.pkl'),
+        (gradientDescent60, 'GradientDescent_60.pkl'),
+        (gradientDescentNoText, 'GradientDescent_no_text.pkl'),
     )
     save_models(model_filename_pairs, output_path)
+    logger.info('finished gradient descent models training')
 
 
 def train_models(model_X_pairs, Y, hparams=None):
     """
     Train (model, X) pairs with target Y.
+    Return trained models
     """
     models = []
     for model, X in model_X_pairs:
         if hparams is None:
             model.train(X, Y)
-            print('closed form mse: %.16f' % model.mse(X, Y))
+            models.append(ClosedForm(w=model.w))
         else:
             model.train(X, Y, **hparams)
-            print('gradescent mse: %.16f' % model.mse(X, Y))
-
-        models.append(model)
+            models.append(GradientDescent(w=model.w, hparams=model.get_hyperparams()))
 
     return models
 

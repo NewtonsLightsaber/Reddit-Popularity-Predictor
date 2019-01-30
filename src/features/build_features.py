@@ -38,6 +38,7 @@ def build_features():
 
         save_Y(get_Y(dataset), output_path, file_prefix)
 
+
 def get_file_prefix(path):
     return str(path).split('/')[-1].split('_')[0]
 
@@ -101,6 +102,8 @@ def get_X_no_text(dataset):
             + [bias_term])
 
     X = np.array(X)
+    print('in get_X_no_text')
+    print(X)
     return X
 
 

@@ -8,6 +8,10 @@ class LinearRegression:
     """
     w = None
 
+    def __init__(self, w=None):
+        if w is not None:
+            self.w = w
+
     def is_trained(self):
         return self.w is not None
 
@@ -48,7 +52,7 @@ class ClosedForm(LinearRegression):
         self.w = np.dot(
             np.linalg.inv( X_transp.dot(X_train) ),
             X_transp.dot(Y_train)
-            )
+        )
         return self.w
 
 
@@ -85,6 +89,11 @@ class GradientDescent(LinearRegression):
     """
     w_0, beta, eta_0, eps = [None] * 4
 
+    def __init__(self, w=None, hparams=None):
+        if w is not None and hparams is not None:
+            self.w = w
+            self.save_hyperparams(hparams)
+
     def __str__(self):
         return ('Gradient descent\n'
                 'w_0: %s,\n'
@@ -111,7 +120,7 @@ class GradientDescent(LinearRegression):
         Output:
             Estimated weights w
         """
-        self.save_hyperparams([w_0, beta, eta_0, eps])
+        self.save_hyperparams({'w_0': w_0, 'beta': beta, 'eta_0': eta_0, 'eps': eps})
 
         n = Y_train.shape[0]
         w_prev = w_0
@@ -141,6 +150,17 @@ class GradientDescent(LinearRegression):
 
         return self.w
 
-
     def save_hyperparams(self, hparams):
-        self.w_0, self.beta, self.eta_0, self.eps = hparams
+        self.w_0 = hparams['w_0']
+        self.beta = hparams['beta']
+        self.eta_0 = hparams['eta_0']
+        self.eps = hparams['eps']
+
+    def get_hyperparams(self):
+        hyperparams = {
+            'w_0': self.w_0,
+            'beta': self.beta,
+            'eta_0': self.eta_0,
+            'eps': self.eps,
+        }
+        return hyperparams

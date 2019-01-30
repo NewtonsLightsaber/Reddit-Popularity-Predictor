@@ -1,0 +1,917 @@
+python3 test_environment.py
+>>> Development environment passes all tests!
+python3 -m pip install -U pip setuptools wheel
+Requirement already up-to-date: pip in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (19.0.1)
+Requirement already up-to-date: setuptools in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (40.7.1)
+Requirement already up-to-date: wheel in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (0.32.3)
+python3 -m pip install -r requirements.txt
+Requirement already satisfied: jupyter in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from -r requirements.txt (line 1)) (1.0.0)
+Requirement already satisfied: numpy in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from -r requirements.txt (line 2)) (1.16.0)
+Requirement already satisfied: plotly in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from -r requirements.txt (line 3)) (3.5.0)
+Requirement already satisfied: cufflinks in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from -r requirements.txt (line 4)) (0.14.6)
+Requirement already satisfied: pandas in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from -r requirements.txt (line 5)) (0.23.4)
+Requirement already satisfied: nbconvert in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (5.4.0)
+Requirement already satisfied: qtconsole in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (4.4.3)
+Requirement already satisfied: ipywidgets in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (7.4.2)
+Requirement already satisfied: jupyter-console in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (6.0.0)
+Requirement already satisfied: ipykernel in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (5.1.0)
+Requirement already satisfied: notebook in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter->-r requirements.txt (line 1)) (5.7.4)
+Requirement already satisfied: pytz in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (2018.9)
+Requirement already satisfied: six in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (1.12.0)
+Requirement already satisfied: requests in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (2.21.0)
+Requirement already satisfied: nbformat>=4.2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (4.4.0)
+Requirement already satisfied: retrying>=1.3.3 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (1.3.3)
+Requirement already satisfied: decorator>=4.0.6 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from plotly->-r requirements.txt (line 3)) (4.3.0)
+Requirement already satisfied: nose==1.3.7 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 4)) (1.3.7)
+Requirement already satisfied: colorlover>=0.2.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 4)) (0.3.0)
+Requirement already satisfied: ipython>=5.3.0 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 4)) (7.2.0)
+Requirement already satisfied: setuptools>=34.4.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from cufflinks->-r requirements.txt (line 4)) (40.7.1)
+Requirement already satisfied: python-dateutil>=2.5.0 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from pandas->-r requirements.txt (line 5)) (2.7.5)
+Requirement already satisfied: pygments in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (2.3.1)
+Requirement already satisfied: traitlets>=4.2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (4.3.2)
+Requirement already satisfied: defusedxml in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (0.5.0)
+Requirement already satisfied: entrypoints>=0.2.2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (0.3)
+Requirement already satisfied: jupyter-core in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (4.4.0)
+Requirement already satisfied: testpath in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (0.4.2)
+Requirement already satisfied: jinja2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (2.10)
+Requirement already satisfied: pandocfilters>=1.4.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (1.4.2)
+Requirement already satisfied: mistune>=0.8.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (0.8.4)
+Requirement already satisfied: bleach in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbconvert->jupyter->-r requirements.txt (line 1)) (3.1.0)
+Requirement already satisfied: jupyter-client>=4.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 1)) (5.2.4)
+Requirement already satisfied: ipython-genutils in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from qtconsole->jupyter->-r requirements.txt (line 1)) (0.2.0)
+Requirement already satisfied: widgetsnbextension~=3.4.0 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipywidgets->jupyter->-r requirements.txt (line 1)) (3.4.2)
+Requirement already satisfied: prompt-toolkit<2.1.0,>=2.0.0 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jupyter-console->jupyter->-r requirements.txt (line 1)) (2.0.7)
+Requirement already satisfied: tornado>=4.2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipykernel->jupyter->-r requirements.txt (line 1)) (5.1.1)
+Requirement already satisfied: prometheus-client in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 1)) (0.5.0)
+Requirement already satisfied: pyzmq>=17 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 1)) (17.1.2)
+Requirement already satisfied: terminado>=0.8.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 1)) (0.8.1)
+Requirement already satisfied: Send2Trash in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from notebook->jupyter->-r requirements.txt (line 1)) (1.5.0)
+Requirement already satisfied: idna<2.9,>=2.5 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from requests->plotly->-r requirements.txt (line 3)) (2.8)
+Requirement already satisfied: chardet<3.1.0,>=3.0.2 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from requests->plotly->-r requirements.txt (line 3)) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from requests->plotly->-r requirements.txt (line 3)) (2018.11.29)
+Requirement already satisfied: urllib3<1.25,>=1.21.1 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from requests->plotly->-r requirements.txt (line 3)) (1.24.1)
+Requirement already satisfied: jsonschema!=2.5.0,>=2.4 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from nbformat>=4.2->plotly->-r requirements.txt (line 3)) (2.6.0)
+Requirement already satisfied: jedi>=0.10 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 4)) (0.13.2)
+Requirement already satisfied: pickleshare in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 4)) (0.7.5)
+Requirement already satisfied: backcall in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 4)) (0.1.0)
+Requirement already satisfied: pexpect; sys_platform != "win32" in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from ipython>=5.3.0->cufflinks->-r requirements.txt (line 4)) (4.6.0)
+Requirement already satisfied: MarkupSafe>=0.23 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jinja2->nbconvert->jupyter->-r requirements.txt (line 1)) (1.1.0)
+Requirement already satisfied: webencodings in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from bleach->nbconvert->jupyter->-r requirements.txt (line 1)) (0.5.1)
+Requirement already satisfied: wcwidth in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from prompt-toolkit<2.1.0,>=2.0.0->jupyter-console->jupyter->-r requirements.txt (line 1)) (0.1.7)
+Requirement already satisfied: ptyprocess; os_name != "nt" in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from terminado>=0.8.1->notebook->jupyter->-r requirements.txt (line 1)) (0.6.0)
+Requirement already satisfied: parso>=0.3.0 in /home/mrbrownstone/.conda/envs/Reddit_Popularity_Predictor/lib/python3.7/site-packages (from jedi>=0.10->ipython>=5.3.0->cufflinks->-r requirements.txt (line 4)) (0.3.1)
+python3 src/data/make_dataset.py
+python3 src/features/build_features.py
+in get_X_no_test
+[[1 0 1 1]
+ [0 0 1 1]
+ [0 0 0 1]
+ ...
+ [1 0 1 1]
+ [0 0 1 1]
+ [0 0 1 1]]
+in get_X_no_test
+[[0 0 0 1]
+ [0 0 0 1]
+ [1 0 0 1]
+ ...
+ [1 0 0 1]
+ [0 0 0 1]
+ [1 0 0 1]]
+in get_X_no_test
+[[1 0 0 1]
+ [0 0 0 1]
+ [0 0 2 1]
+ ...
+ [1 0 0 1]
+ [0 0 0 1]
+ [1 0 4 1]]
+python3 src/models/train_model.py
+[[-2.36577896e-01]
+ [-1.06807964e+00]
+ [ 3.73755813e-01]
+ [-9.20178205e-03]
+ [-2.08035834e-02]
+ [-1.46121850e-02]
+ [-2.12712897e-02]
+ [ 1.25057105e-02]
+ [-3.33629033e-03]
+ [-5.82413933e-02]
+ [ 5.42444765e-02]
+ [ 2.74005334e-02]
+ [ 1.84596751e-02]
+ [ 1.57514227e-02]
+ [-4.73125082e-02]
+ [ 4.90693272e-02]
+ [ 2.54562517e-02]
+ [-5.72239462e-02]
+ [-5.00976801e-02]
+ [ 5.00039665e-02]
+ [ 6.24830543e-02]
+ [ 3.49798615e-02]
+ [-6.13611177e-03]
+ [ 2.81655339e-02]
+ [-3.67849319e-02]
+ [-2.49394210e-02]
+ [-2.68923009e-02]
+ [ 3.34785743e-02]
+ [ 7.20455786e-02]
+ [ 2.21709104e-02]
+ [-1.52196630e-02]
+ [-3.55448777e-03]
+ [ 2.11746121e-02]
+ [ 3.88006782e-02]
+ [-2.86398153e-02]
+ [ 3.56525848e-02]
+ [-1.69868837e-02]
+ [ 5.16153545e-02]
+ [-8.35170795e-02]
+ [-8.48067640e-04]
+ [ 2.57158531e-02]
+ [ 1.49104247e-04]
+ [-2.93064700e-02]
+ [-1.18845551e-03]
+ [ 5.69499078e-02]
+ [ 4.80045168e-02]
+ [-3.00720160e-02]
+ [-6.34895358e-02]
+ [ 8.11247245e-02]
+ [-9.19339212e-03]
+ [ 3.32288539e-02]
+ [ 2.91681252e-02]
+ [ 1.57835997e-02]
+ [-1.22389512e-02]
+ [ 6.16601858e-03]
+ [-5.32730345e-02]
+ [-3.12166332e-02]
+ [ 4.52538094e-03]
+ [-3.41823323e-01]
+ [ 2.05517732e-03]
+ [-3.42384927e-02]
+ [-2.08284534e-02]
+ [-7.24508777e-02]
+ [ 1.41169557e-01]
+ [-2.69185144e-02]
+ [ 2.57034918e-02]
+ [-6.45071532e-02]
+ [ 7.18202320e-02]
+ [-7.47289662e-03]
+ [-5.77852299e-03]
+ [ 3.17670852e-02]
+ [-3.66829025e-02]
+ [-4.34587540e-02]
+ [-9.18873771e-02]
+ [ 3.24148978e-03]
+ [-3.24117759e-02]
+ [ 1.32649035e-02]
+ [ 1.38952468e-02]
+ [-8.80306165e-02]
+ [ 4.30995174e-03]
+ [ 6.85950230e-03]
+ [ 3.50536759e-02]
+ [-5.26064112e-02]
+ [-4.33349196e-02]
+ [ 4.54125641e-02]
+ [ 4.39048587e-02]
+ [ 2.83128746e-02]
+ [-2.24028649e-02]
+ [ 8.46957688e-02]
+ [-2.23675081e-02]
+ [ 5.44434120e-02]
+ [-3.06739380e-02]
+ [-2.61169638e-03]
+ [-9.64116047e-02]
+ [-5.25574054e-02]
+ [ 7.68940397e-03]
+ [-1.83631494e-03]
+ [-1.44534505e-02]
+ [-1.81188286e-02]
+ [ 7.41783945e-02]
+ [-7.39884763e-03]
+ [-2.03755579e-02]
+ [ 1.50632246e-02]
+ [ 1.57540488e-01]
+ [ 2.59360069e-02]
+ [-8.03731685e-02]
+ [ 3.77864624e-02]
+ [ 5.74985257e-02]
+ [ 7.79645051e-02]
+ [ 2.84901905e-02]
+ [-9.40802581e-03]
+ [-7.01857760e-02]
+ [ 7.84215492e-02]
+ [ 1.80339634e-02]
+ [ 2.61299953e-02]
+ [ 1.23855176e-01]
+ [ 8.81116652e-03]
+ [-8.50233219e-02]
+ [-8.05850866e-02]
+ [-1.19519081e-01]
+ [ 5.80259804e-02]
+ [ 6.53810683e-02]
+ [ 1.02741452e-01]
+ [ 2.50405173e-02]
+ [-5.94058970e-02]
+ [ 1.22228639e-01]
+ [ 9.29965322e-03]
+ [ 1.59410976e-01]
+ [ 1.48572686e-02]
+ [ 4.51821799e-02]
+ [-1.27348181e-01]
+ [-2.61288436e-02]
+ [-3.80493643e-02]
+ [ 1.53493448e-01]
+ [-2.25092267e-01]
+ [-4.43890211e-02]
+ [ 1.04262383e-03]
+ [ 5.03167168e-02]
+ [-2.89154654e-02]
+ [ 2.62673079e-02]
+ [ 5.81646909e-03]
+ [-3.10603116e-03]
+ [ 1.42164485e-01]
+ [-5.45797636e-03]
+ [-6.30596520e-03]
+ [-8.95982066e-02]
+ [-1.08933839e-02]
+ [ 5.45981999e-02]
+ [-6.43079429e-02]
+ [-8.41930143e-02]
+ [ 6.49042032e-02]
+ [ 2.71960487e-01]
+ [-2.15282544e-01]
+ [-1.51257087e-01]
+ [-8.78184354e-02]
+ [-1.34785728e-02]
+ [-2.37114362e-02]
+ [ 5.18586252e-02]
+ [-2.43320104e-01]
+ [ 5.52091252e-02]
+ [ 4.45508204e-02]
+ [-2.60056015e-02]
+ [ 2.34328370e-02]
+ [ 8.47360225e-01]]
+closed form mse: 1.0477763217987115
+[[-2.36577896e-01]
+ [-1.06807964e+00]
+ [ 3.73755813e-01]
+ [-9.20178205e-03]
+ [-2.08035834e-02]
+ [-1.46121850e-02]
+ [-2.12712897e-02]
+ [ 1.25057105e-02]
+ [-3.33629033e-03]
+ [-5.82413933e-02]
+ [ 5.42444765e-02]
+ [ 2.74005334e-02]
+ [ 1.84596751e-02]
+ [ 1.57514227e-02]
+ [-4.73125082e-02]
+ [ 4.90693272e-02]
+ [ 2.54562517e-02]
+ [-5.72239462e-02]
+ [-5.00976801e-02]
+ [ 5.00039665e-02]
+ [ 6.24830543e-02]
+ [ 3.49798615e-02]
+ [-6.13611177e-03]
+ [ 2.81655339e-02]
+ [-3.67849319e-02]
+ [-2.49394210e-02]
+ [-2.68923009e-02]
+ [ 3.34785743e-02]
+ [ 7.20455786e-02]
+ [ 2.21709104e-02]
+ [-1.52196630e-02]
+ [-3.55448777e-03]
+ [ 2.11746121e-02]
+ [ 3.88006782e-02]
+ [-2.86398153e-02]
+ [ 3.56525848e-02]
+ [-1.69868837e-02]
+ [ 5.16153545e-02]
+ [-8.35170795e-02]
+ [-8.48067640e-04]
+ [ 2.57158531e-02]
+ [ 1.49104247e-04]
+ [-2.93064700e-02]
+ [-1.18845551e-03]
+ [ 5.69499078e-02]
+ [ 4.80045168e-02]
+ [-3.00720160e-02]
+ [-6.34895358e-02]
+ [ 8.11247245e-02]
+ [-9.19339212e-03]
+ [ 3.32288539e-02]
+ [ 2.91681252e-02]
+ [ 1.57835997e-02]
+ [-1.22389512e-02]
+ [ 6.16601858e-03]
+ [-5.32730345e-02]
+ [-3.12166332e-02]
+ [ 4.52538094e-03]
+ [-3.41823323e-01]
+ [ 2.05517732e-03]
+ [-3.42384927e-02]
+ [-2.08284534e-02]
+ [-7.24508777e-02]
+ [ 1.41169557e-01]
+ [-2.69185144e-02]
+ [ 2.57034918e-02]
+ [-6.45071532e-02]
+ [ 7.18202320e-02]
+ [-7.47289662e-03]
+ [-5.77852299e-03]
+ [ 3.17670852e-02]
+ [-3.66829025e-02]
+ [-4.34587540e-02]
+ [-9.18873771e-02]
+ [ 3.24148978e-03]
+ [-3.24117759e-02]
+ [ 1.32649035e-02]
+ [ 1.38952468e-02]
+ [-8.80306165e-02]
+ [ 4.30995174e-03]
+ [ 6.85950230e-03]
+ [ 3.50536759e-02]
+ [-5.26064112e-02]
+ [-4.33349196e-02]
+ [ 4.54125641e-02]
+ [ 4.39048587e-02]
+ [ 2.83128746e-02]
+ [-2.24028649e-02]
+ [ 8.46957688e-02]
+ [-2.23675081e-02]
+ [ 5.44434120e-02]
+ [-3.06739380e-02]
+ [-2.61169638e-03]
+ [-9.64116047e-02]
+ [-5.25574054e-02]
+ [ 7.68940397e-03]
+ [-1.83631494e-03]
+ [-1.44534505e-02]
+ [-1.81188286e-02]
+ [ 7.41783945e-02]
+ [-7.39884763e-03]
+ [-2.03755579e-02]
+ [ 1.50632246e-02]
+ [ 1.57540488e-01]
+ [ 2.59360069e-02]
+ [-8.03731685e-02]
+ [ 3.77864624e-02]
+ [ 5.74985257e-02]
+ [ 7.79645051e-02]
+ [ 2.84901905e-02]
+ [-9.40802581e-03]
+ [-7.01857760e-02]
+ [ 7.84215492e-02]
+ [ 1.80339634e-02]
+ [ 2.61299953e-02]
+ [ 1.23855176e-01]
+ [ 8.81116652e-03]
+ [-8.50233219e-02]
+ [-8.05850866e-02]
+ [-1.19519081e-01]
+ [ 5.80259804e-02]
+ [ 6.53810683e-02]
+ [ 1.02741452e-01]
+ [ 2.50405173e-02]
+ [-5.94058970e-02]
+ [ 1.22228639e-01]
+ [ 9.29965322e-03]
+ [ 1.59410976e-01]
+ [ 1.48572686e-02]
+ [ 4.51821799e-02]
+ [-1.27348181e-01]
+ [-2.61288436e-02]
+ [-3.80493643e-02]
+ [ 1.53493448e-01]
+ [-2.25092267e-01]
+ [-4.43890211e-02]
+ [ 1.04262383e-03]
+ [ 5.03167168e-02]
+ [-2.89154654e-02]
+ [ 2.62673079e-02]
+ [ 5.81646909e-03]
+ [-3.10603116e-03]
+ [ 1.42164485e-01]
+ [-5.45797636e-03]
+ [-6.30596520e-03]
+ [-8.95982066e-02]
+ [-1.08933839e-02]
+ [ 5.45981999e-02]
+ [-6.43079429e-02]
+ [-8.41930143e-02]
+ [ 6.49042032e-02]
+ [ 2.71960487e-01]
+ [-2.15282544e-01]
+ [-1.51257087e-01]
+ [-8.78184354e-02]
+ [-1.34785728e-02]
+ [-2.37114362e-02]
+ [ 5.18586252e-02]
+ [-2.43320104e-01]
+ [ 5.52091252e-02]
+ [ 4.45508204e-02]
+ [-2.60056015e-02]
+ [ 2.34328370e-02]
+ [ 8.47360225e-01]]
+closed form mse: 1.0477763217987115
+[[-2.36162681e-01]
+ [-1.07278235e+00]
+ [ 3.73674789e-01]
+ [-1.28082260e-02]
+ [-1.63540533e-02]
+ [-1.30261375e-02]
+ [-7.58956025e-03]
+ [ 9.95761208e-03]
+ [ 4.92545306e-03]
+ [-4.87471454e-02]
+ [ 5.00382097e-02]
+ [ 3.25956999e-02]
+ [ 1.35075682e-02]
+ [ 1.32873393e-03]
+ [-3.69452821e-02]
+ [ 5.20693887e-02]
+ [ 2.92786296e-02]
+ [-5.32212558e-02]
+ [-4.83507272e-02]
+ [ 3.41232736e-02]
+ [ 7.11194909e-02]
+ [ 4.91050214e-02]
+ [-1.68073679e-02]
+ [ 5.00137405e-03]
+ [-3.72871669e-02]
+ [-2.29483462e-02]
+ [-4.34436945e-02]
+ [ 1.38670654e-02]
+ [ 4.14851174e-02]
+ [ 2.46926870e-02]
+ [ 5.79196224e-03]
+ [ 1.19166355e-02]
+ [ 3.01709883e-02]
+ [ 1.84088573e-02]
+ [-1.12367149e-02]
+ [ 5.73874494e-02]
+ [-2.01273310e-02]
+ [ 4.17349710e-02]
+ [-6.63074750e-02]
+ [ 1.45461074e-03]
+ [ 2.50014785e-02]
+ [-1.75846712e-02]
+ [-2.82345436e-02]
+ [-1.08123400e-03]
+ [ 2.92191739e-02]
+ [ 3.54887927e-02]
+ [-4.29771255e-02]
+ [-5.42236745e-02]
+ [ 7.33713373e-02]
+ [-9.50805395e-03]
+ [ 1.80910281e-02]
+ [ 1.85181648e-02]
+ [ 7.67719983e-03]
+ [-3.16430363e-03]
+ [-4.56644643e-04]
+ [-5.52488393e-02]
+ [-3.44898718e-02]
+ [ 1.46925091e-03]
+ [-3.47426074e-01]
+ [-4.55596262e-03]
+ [-2.21109804e-02]
+ [-5.81685151e-02]
+ [-7.20163211e-02]
+ [ 8.52812270e-01]]
+closed form mse: 1.0604291416853830
+[[-0.22627679]
+ [-1.08584747]
+ [ 0.37536403]
+ [ 0.82092517]]
+closed form mse: 1.0846830709157251
+beta: 0.0001000000000000
+eta_0: 0.0010000000000000
+i: 1
+wDiff: 0.0044605824394309
+mse: 2.0928007927330077
+i: 2
+wDiff: 0.0043537290244310
+mse: 2.0740661307956878
+i: 3
+wDiff: 0.0042507036740795
+mse: 2.0562031720281024
+i: 4
+wDiff: 0.0041513862410088
+mse: 2.0391608694009538
+i: 5
+wDiff: 0.0040556597597036
+mse: 2.0228912715493506
+i: 6
+wDiff: 0.0039634103344383
+mse: 2.0073493339098651
+i: 7
+wDiff: 0.0038745270328308
+mse: 1.9924927414043729
+i: 8
+wDiff: 0.0037889017850070
+mse: 1.9782817419636023
+i: 9
+wDiff: 0.0037064292883622
+mse: 1.9646789902266828
+i: 10
+wDiff: 0.0036270069178834
+mse: 1.9516494007936693
+i: 11
+wDiff: 0.0035505346419821
+mse: 1.9391600104462425
+i: 12
+wDiff: 0.0034769149437625
+mse: 1.9271798487876171
+i: 13
+wDiff: 0.0034060527476303
+mse: 1.9156798167863653
+i: 14
+wDiff: 0.0033378553511182
+mse: 1.9046325727404336
+i: 15
+wDiff: 0.0032722323617829
+mse: 1.8940124252072852
+i: 16
+wDiff: 0.0032090956389979
+mse: 1.8837952324739389
+i: 17
+wDiff: 0.0031483592404434
+mse: 1.8739583081667686
+i: 18
+wDiff: 0.0030899393730653
+mse: 1.8644803326254831
+i: 19
+wDiff: 0.0030337543482540
+mse: 1.8553412696886757
+i: 20
+wDiff: 0.0029797245409675
+mse: 1.8465222885599746
+i: 21
+wDiff: 0.0029277723525054
+mse: 1.8380056904440658
+i: 22
+wDiff: 0.0028778221766206
+mse: 1.8297748396609181
+i: 23
+wDiff: 0.0028298003686420
+mse: 1.8218140989643827
+i: 24
+wDiff: 0.0027836352172714
+mse: 1.8141087688081245
+i: 25
+wDiff: 0.0027392569187088
+mse: 1.8066450303175750
+i: 26
+wDiff: 0.0026965975527603
+mse: 1.7994098917413646
+i: 27
+wDiff: 0.0026555910605828
+mse: 1.7923911381695783
+i: 28
+wDiff: 0.0026161732237265
+mse: 1.7855772843191753
+i: 29
+wDiff: 0.0025782816441456
+mse: 1.7789575301991520
+i: 30
+wDiff: 0.0025418557248627
+mse: 1.7725217194794867
+i: 31
+wDiff: 0.0025068366509885
+mse: 1.7662603003986816
+i: 32
+wDiff: 0.0024731673708200
+mse: 1.7601642890548137
+i: 33
+wDiff: 0.0024407925767647
+mse: 1.7542252349345064
+i: 34
+wDiff: 0.0024096586858620
+mse: 1.7484351885431391
+i: 35
+wDiff: 0.0023797138197022
+mse: 1.7427866710079594
+i: 36
+wDiff: 0.0023509077835715
+mse: 1.7372726455336365
+i: 37
+wDiff: 0.0023231920446791
+mse: 1.7318864905971394
+i: 38
+wDiff: 0.0022965197093551
+mse: 1.7266219747757516
+i: 39
+wDiff: 0.0022708454991307
+mse: 1.7214732331085298
+i: 40
+wDiff: 0.0022461257256480
+mse: 1.7164347448975978
+i: 41
+wDiff: 0.0022223182643635
+mse: 1.7115013128614074
+i: 42
+wDiff: 0.0021993825270435
+mse: 1.7066680435574482
+i: 43
+wDiff: 0.0021772794330645
+mse: 1.7019303289969538
+i: 44
+wDiff: 0.0021559713795580
+mse: 1.6972838293788648
+i: 45
+wDiff: 0.0021354222104527
+mse: 1.6927244568747752
+i: 46
+wDiff: 0.0021155971844875
+mse: 1.6882483604007374
+i: 47
+wDiff: 0.0020964629422774
+mse: 1.6838519113157464
+i: 48
+wDiff: 0.0020779874725279
+mse: 1.6795316899903705
+i: 49
+wDiff: 0.0020601400775033
+mse: 1.6752844731924754
+i: 50
+wDiff: 0.0020428913378556
+mse: 1.6711072222402141
+i: 51
+wDiff: 0.0020262130769304
+mse: 1.6669970718755012
+i: 52
+wDiff: 0.0020100783246655
+mse: 1.6629513198140484
+i: 53
+wDiff: 0.0019944612811971
+mse: 1.6589674169307240
+i: 54
+wDiff: 0.0019793372802906
+mse: 1.6550429580415054
+i: 55
+wDiff: 0.0019646827527073
+mse: 1.6511756732456742
+i: 56
+wDiff: 0.0019504751896162
+mse: 1.6473634197941056
+i: 57
+wDiff: 0.0019366931061545
+mse: 1.6436041744516057
+i: 58
+wDiff: 0.0019233160052346
+mse: 1.6398960263231857
+i: 59
+wDiff: 0.0019103243416908
+mse: 1.6362371701160252
+i: 60
+wDiff: 0.0018976994868490
+mse: 1.6326258998105720
+i: 61
+wDiff: 0.0018854236935982
+mse: 1.6290606027158709
+i: 62
+wDiff: 0.0018734800620354
+mse: 1.6255397538857155
+i: 63
+wDiff: 0.0018618525057457
+mse: 1.6220619108736603
+i: 64
+wDiff: 0.0018505257187748
+mse: 1.6186257088062530
+i: 65
+wDiff: 0.0018394851433429
+mse: 1.6152298557551206
+i: 66
+wDiff: 0.0018287169383411
+mse: 1.6118731283897147
+i: 67
+wDiff: 0.0018182079486462
+mse: 1.6085543678936431
+i: 68
+wDiff: 0.0018079456752837
+mse: 1.6052724761285277
+i: 69
+wDiff: 0.0017979182464597
+mse: 1.6020264120303513
+i: 70
+wDiff: 0.0017881143894812
+mse: 1.5988151882241295
+i: 71
+wDiff: 0.0017785234035754
+mse: 1.5956378678436351
+i: 72
+wDiff: 0.0017691351336163
+mse: 1.5924935615436988
+i: 73
+wDiff: 0.0017599399447594
+mse: 1.5893814246933777
+i: 74
+wDiff: 0.0017509286979861
+mse: 1.5863006547389884
+i: 75
+wDiff: 0.0017420927265498
+mse: 1.5832504887266770
+i: 76
+wDiff: 0.0017334238133182
+mse: 1.5802302009748312
+i: 77
+wDiff: 0.0017249141689985
+mse: 1.5772391008872200
+i: 78
+wDiff: 0.0017165564112337
+mse: 1.5742765308983087
+i: 79
+wDiff: 0.0017083435445531
+mse: 1.5713418645427200
+i: 80
+wDiff: 0.0017002689411597
+mse: 1.5684345046412955
+i: 81
+wDiff: 0.0016923263225356
+mse: 1.5655538815966707
+i: 82
+wDiff: 0.0016845097418441
+mse: 1.5626994517917152
+i: 83
+wDiff: 0.0016768135671073
+mse: 1.5598706960845865
+i: 84
+wDiff: 0.0016692324651371
+mse: 1.5570671183945326
+i: 85
+wDiff: 0.0016617613861954
+mse: 1.5542882443729322
+i: 86
+wDiff: 0.0016543955493607
+mse: 1.5515336201543968
+i: 87
+wDiff: 0.0016471304285773
+mse: 1.5488028111830732
+i: 88
+wDiff: 0.0016399617393623
+mse: 1.5460954011095867
+i: 89
+wDiff: 0.0016328854261475
+mse: 1.5434109907543334
+i: 90
+wDiff: 0.0016258976502309
+mse: 1.5407491971330998
+i: 91
+wDiff: 0.0016189947783150
+mse: 1.5381096525412221
+i: 92
+wDiff: 0.0016121733716088
+mse: 1.5354920036927464
+i: 93
+wDiff: 0.0016054301754693
+mse: 1.5328959109112372
+i: 94
+wDiff: 0.0015987621095607
+mse: 1.5303210473691211
+i: 95
+wDiff: 0.0015921662585089
+mse: 1.5277670983726079
+i: 96
+wDiff: 0.0015856398630304
+mse: 1.5252337606894357
+i: 97
+wDiff: 0.0015791803115129
+mse: 1.5227207419168418
+i: 98
+wDiff: 0.0015727851320298
+mse: 1.5202277598873204
+i: 99
+wDiff: 0.0015664519847656
+mse: 1.5177545421098830
+i: 100
+wDiff: 0.0015601786548366
+mse: 1.5153008252446651
+i: 101
+wDiff: 0.0015539630454851
+mse: 1.5128663546088659
+i: 102
+wDiff: 0.0015478031716317
+mse: 1.5104508837121173
+i: 103
+wDiff: 0.0015416971537671
+mse: 1.5080541738195090
+i: 104
+wDiff: 0.0015356432121681
+mse: 1.5056759935405910
+i: 105
+wDiff: 0.0015296396614203
+mse: 1.5033161184427806
+i: 106
+wDiff: 0.0015236849052336
+mse: 1.5009743306877019
+i: 107
+wDiff: 0.0015177774315358
+mse: 1.4986504186890706
+i: 108
+wDiff: 0.0015119158078295
+mse: 1.4963441767908177
+i: 109
+wDiff: 0.0015060986767996
+mse: 1.4940554049642341
+i: 110
+wDiff: 0.0015003247521589
+mse: 1.4917839085229812
+i: 111
+wDiff: 0.0014945928147182
+mse: 1.4895294978548965
+i: 112
+wDiff: 0.0014889017086711
+mse: 1.4872919881695685
+i: 113
+wDiff: 0.0014832503380807
+mse: 1.4850711992607419
+i: 114
+wDiff: 0.0014776376635594
+mse: 1.4828669552826470
+i: 115
+wDiff: 0.0014720626991293
+mse: 1.4806790845394209
+i: 116
+wDiff: 0.0014665245092561
+mse: 1.4785074192868268
+i: 117
+wDiff: 0.0014610222060459
+mse: 1.4763517955455314
+i: 118
+wDiff: 0.0014555549465962
+mse: 1.4742120529252447
+i: 119
+wDiff: 0.0014501219304936
+mse: 1.4720880344590659
+i: 120
+wDiff: 0.0014447223974501
+mse: 1.4699795864474234
+i: 121
+wDiff: 0.0014393556250695
+mse: 1.4678865583110281
+i: 122
+wDiff: 0.0014340209267386
+mse: 1.4658088024523008
+i: 123
+wDiff: 0.0014287176496353
+mse: 1.4637461741247637
+i: 124
+wDiff: 0.0014234451728475
+mse: 1.4616985313099153
+i: 125
+wDiff: 0.0014182029055967
+mse: 1.4596657346011412
+i: 126
+wDiff: 0.0014129902855608
+mse: 1.4576476470942359
+i: 127
+wDiff: 0.0014078067772903
+mse: 1.4556441342841446
+i: 128
+wDiff: 0.0014026518707138
+mse: 1.4536550639675421
+i: 129
+wDiff: 0.0013975250797256
+mse: 1.4516803061509094
+i: 130
+wDiff: 0.0013924259408542
+mse: 1.4497197329637725
+i: 131
+wDiff: 0.0013873540120036
+mse: 1.4477732185767946
+i: 132
+wDiff: 0.0013823088712670
+mse: 1.4458406391244341
+i: 133
+wDiff: 0.0013772901158052
+mse: 1.4439218726318925
+i: 134
+wDiff: 0.0013722973607897
+mse: 1.4420167989461004
+i: 135
+wDiff: 0.0013673302384040
+mse: 1.4401252996704910
+i: 136
+wDiff: 0.0013623883969015
+mse: 1.4382472581033494
+i: 137
+wDiff: 0.0013574714997163
+mse: 1.4363825591795130
+i: 138
+wDiff: 0.0013525792246245
+mse: 1.4345310894152257
+i: 139
+wDiff: 0.0013477112629515
+mse: 1.4326927368559637
+i: 140
+wDiff: 0.0013428673188257
+mse: 1.4308673910270500
+i: 141
+wDiff: 0.0013380471084726
+mse: 1.4290549428868962
+i: 142
+wDiff: 0.0013332503595496
+mse: 1.4272552847827127
