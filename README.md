@@ -62,6 +62,12 @@ Train and save models to `models/` with:
     # then run src/models/train_model.py to train and save models to models/
     make train
 
+### Make predictions
+Predictions are json lists in `reports/`.  
+Make predicions with:
+
+    make predict
+
 ## Project Organization
 
     ├── LICENSE
