@@ -28,11 +28,10 @@ def main():
     The full model is:
         top 160 words + newly added features included
 
-    We've discovered the full model performs best when
-    the stem vector contains 100 elements
+    We'll pick 42 as the degree of freedom for the stem feature
     (see notebook `3.0-lnh-task-3-experimentation`)
     """
-    optimal_size = 100
+    optimal_size = 42
 
     # Reduce stem vector size
     X_train = reduce_stem(X_train, optimal_size)

@@ -43,11 +43,10 @@ def main():
     The full model is:
         top 160 words + newly added features included
 
-    We've discovered the full model performs best when
-    the stem vector contains 100 elements
+    We'll pick 42 as the degree of freedom for the stem feature
     (see notebook `3.0-lnh-task-3-experimentation`)
     """
-    optimal_size = 100
+    optimal_size = 42
 
     # Reducing stem vector's size of X_train
     X_train = reduce_stem(X_train, optimal_size)
@@ -88,9 +87,7 @@ def main():
     # Hyperparameters
     hparams = {
         'beta': 1e-4, # prof: < 1e-3
-        #'beta': 1e-7,
         'eta_0': 1e-5, # prof: < 1e-5
-        #'eta_0': 1e-6,
         'eps': 1e-6,
     }
     gradientDescent, \
