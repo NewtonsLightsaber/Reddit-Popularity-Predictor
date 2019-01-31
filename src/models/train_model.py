@@ -26,6 +26,7 @@ def main():
 
     features_path = project_dir / 'src' / 'features'
     output_path = project_dir / 'models'
+    predictions_path = project_dir / 'reports'
 
     X_train, \
     X_train_160, \
@@ -36,20 +37,34 @@ def main():
     closedForm, closedForm160, closedForm60, closedFormNoText = [ClosedForm()] * 4
     gradientDescent, gradientDescent160, gradientDescent60, gradientDescentNoText = [GradientDescent()] * 4
 
+
+    """
+    Train closed form top 160, top 60, no text and full models.
+    The full model is:
+        top 160 words + newly added features included
+
+    We've discovered the full model performs best when
+    the stem vector contains 100 elements
+    (see notebook `3.0-lnh-task-3-experimentation`)
+    """
+    optimal_size = 100
+
+    # Reducing stem vector's size of X_train
+    X_train = reduce_stem(X_train, optimal_size)
+
+    # Train models
     model_X_pairs = (
         (closedForm, X_train),
         (closedForm160, X_train_160),
         (closedForm60, X_train_60),
         (closedFormNoText, X_train_no_text),
     )
-
-    """
-    Train closed form models
-    """
     closedForm, \
     closedForm160, \
     closedForm60, \
     closedFormNoText = train_models(model_X_pairs, Y_train)
+
+    # Sve models
     model_filename_pairs = (
         (closedForm, 'ClosedForm.pkl'),
         (closedForm160, 'ClosedForm_160.pkl'),
@@ -57,7 +72,8 @@ def main():
         (closedFormNoText, 'ClosedForm_no_text.pkl'),
     )
     save_models(model_filename_pairs, output_path)
-    logger.info('finished closed form models training')
+    logger.info('finished closed form no text, top 160, top 60 models training')
+
 
     """
     Train gradient descent models
@@ -135,6 +151,29 @@ def get_XY_train(features_path):
         XY_train.append(pickle.load(open(features_path / file, 'rb')))
 
     return XY_train
+
+
+def reduce_stem(X, stem_size):
+    """
+    Structure of a row of X_train:
+    index 0: is_root
+          1: controversiality
+          2: children
+          3: length
+          4-163: x_counts
+          164-323: stem
+          324: bias term
+    """
+    stem_start = 164
+
+    X_temp = np.array([ # 1 X matrix
+        np.concatenate(( # One row
+            X[i][:stem_start], # Begining of row
+            X[i][stem_start:stem_start + stem_size], # Stem
+            np.array([1]) # Bias term of row
+        )) for i in range(X.shape[0]) # 10000 rows to create 1 X matrix
+    ])
+    return X_temp
 
 
 def save_models(model_filename_pairs, output_path):

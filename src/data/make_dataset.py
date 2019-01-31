@@ -6,10 +6,7 @@ from collections import Counter
 from nltk.stem import PorterStemmer
 
 ps = PorterStemmer()
-
-ps = PorterStemmer()
 project_dir = Path(__file__).resolve().parents[2]
-
 
 def main():
     """
@@ -85,16 +82,6 @@ def preprocess_dataset(dataset):
 
         # Extract word count feature
         data['x_counts'] = get_x_counts(data, most_freq_words)
-        
-        # Add Comment Length
-        data['comment_length'] = len(data['text'])
-
-        # Stemming as a feature
-        # nltk library
-        # ref: https://www.nltk.org
-        # to be solved: stemmed words are string.
-        # Need to compare with original comment to get involved into the matrix.
-        #data['stemmed'] = stemmer.stem(data['text'])
 
         # Add Comment Length
         data['length'] = len(data['text'])
@@ -111,11 +98,10 @@ def get_most_freq_words(dataset):
     words = [word for data in dataset for word in preprocess_text(data['text'])]
     return [word for (word, _) in Counter(words).most_common(160)]
 
-# stem before x_counts
+
 def get_x_counts(data, most_freq_words):
     x_counts = [0] * 160
-    counts = dict(Counter(preprocess_text(stemmer.stem(data['text']))))
-    #counts = dict(Counter(preprocess_text(data['text'])))
+    counts = dict(Counter(preprocess_text(data['text'])))
     for word, count in counts.items():
         if word in most_freq_words:
             x_counts[most_freq_words.index(word)] = count

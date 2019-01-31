@@ -20,7 +20,7 @@ def build_features():
         1. 'no_text': no text features
         2. '60': top 60 words
         3. '160': top 160 words (basic, with stop words like 'the' or 'a' included)
-        4. Top 160 words + newly added features included
+        4. Top 160 words + newly added features: comment length and stemming
     """
     output_path = project_dir / 'src' / 'features'
     paths = (project_dir / 'data' / 'processed').glob('*.json')
