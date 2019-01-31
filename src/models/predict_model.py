@@ -5,7 +5,7 @@ import pickle
 import json
 from pathlib import Path
 from models import *
-from train_model import get_XY_train
+from train_model import get_XY_train, reduce_stem
 
 project_dir = Path(__file__).resolve().parents[2]
 
@@ -23,6 +23,20 @@ def main():
     X_train, X_train_160, X_train_60, X_train_no_text, Y_train = get_XY_train(features_path)
     X_validate, X_validate_160, X_validate_60, X_validate_no_text, Y_validate = get_XY_validate(features_path)
     X_test, X_test_160, X_test_60, X_test_no_text, Y_test = get_XY_test(features_path)
+
+    """
+    The full model is:
+        top 160 words + newly added features included
+
+    We'll pick 42 as the degree of freedom for the stem feature
+    (see notebook `3.0-lnh-task-3-experimentation`)
+    """
+    optimal_size = 42
+
+    # Reduce stem vector size
+    X_train = reduce_stem(X_train, optimal_size)
+    X_validate = reduce_stem(X_validate, optimal_size)
+    X_test = reduce_stem(X_test, optimal_size)
 
     filenames = (
         'ClosedForm.pkl',
@@ -45,9 +59,6 @@ def main():
         models_path,
         filenames=filenames,
     )
-
-    print(gradientDescent.w_0[0])
-    print(gradientDescent.w[0])
 
     model_name_pairs = (
         (closedForm, 'ClosedForm'),
@@ -165,6 +176,7 @@ def get_models(models_path, filenames=None):
             models.append(model)
 
     return models
+
 
 def get_model(path):
     model = pickle.load(open(path, 'rb'))

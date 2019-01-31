@@ -6,10 +6,7 @@ from collections import Counter
 from nltk.stem import PorterStemmer
 
 ps = PorterStemmer()
-
-ps = PorterStemmer()
 project_dir = Path(__file__).resolve().parents[2]
-
 
 def main():
     """
@@ -85,16 +82,6 @@ def preprocess_dataset(dataset):
 
         # Extract word count feature
         data['x_counts'] = get_x_counts(data, most_freq_words)
-        
-        # Add Comment Length
-        data['comment_length'] = len(data['text'])
-
-        # Stemming as a feature
-        # nltk library
-        # ref: https://www.nltk.org
-        # to be solved: stemmed words are string.
-        # Need to compare with original comment to get involved into the matrix.
-        #data['stemmed'] = stemmer.stem(data['text'])
 
         # Add Comment Length
         data['length'] = len(data['text'])
@@ -111,11 +98,10 @@ def get_most_freq_words(dataset):
     words = [word for data in dataset for word in preprocess_text(data['text'])]
     return [word for (word, _) in Counter(words).most_common(160)]
 
-# stem before x_counts
+
 def get_x_counts(data, most_freq_words):
     x_counts = [0] * 160
-    counts = dict(Counter(preprocess_text(stemmer.stem(data['text']))))
-    #counts = dict(Counter(preprocess_text(data['text'])))
+    counts = dict(Counter(preprocess_text(data['text'])))
     for word, count in counts.items():
         if word in most_freq_words:
             x_counts[most_freq_words.index(word)] = count
@@ -148,7 +134,15 @@ def preprocess_text_stem(text):
 
     # Taken from Yoast SEO
     # Source: https://github.com/Yoast/YoastSEO.js/blob/develop/src/config/stopwords.js
-    stopwords = [ "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by", "could", "did", "do", "does", "doing", "down", "during", "each", "few", "for", "from", "further", "had", "has", "have", "having", "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "it", "it's", "its", "itself", "let's", "me", "more", "most", "my", "myself", "nor", "of", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "she", "she'd", "she'll", "she's", "should", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "we", "we'd", "we'll", "we're", "we've", "were", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "would", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves" ]
+    stopwords = [
+        "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "as", "at", "be", "because", "been", "before", "being", "below", "between", "both",
+        "but", "by", "could", "did", "do", "does", "doing", "down", "during", "each", "few", "for", "from", "further", "had", "has", "have", "having", "he", "he'd", "he'll", "he's", "her",
+        "here", "here's", "hers", "herself", "him", "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in", "into", "is", "it", "it's", "its", "itself", "let's", "me",
+        "more", "most", "my", "myself", "nor", "of", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out", "over", "own", "same", "she", "she'd", "she'll", "she's",
+        "should", "so", "some", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're",
+        "they've", "this", "those", "through", "to", "too", "under", "until", "up", "very", "was", "we", "we'd", "we'll", "we're", "we've", "were", "what", "what's", "when", "when's", "where",
+        "where's", "which", "while", "who", "who's", "whom", "why", "why's", "with", "would", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves",
+    ]
 
     # Remove stopwords
     text = ' '.join([word for word in text.lower().split() if word not in stopwords])

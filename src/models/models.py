@@ -47,13 +47,22 @@ class ClosedForm(LinearRegression):
         Save weight vector w as field of the instance,
         from the features and labels matrixes.
         Side effect: return weights w
+
+        w = (XtX)-1 (XtY) => (XtX)w = XtY
+
+        We will therefore use np.linalg.inv(), which is faster,
+        to obtain the closed form solution.
+
+        In the case XtX is a singular matrix, we will make do with an
+        approximate solution with np.linalg.lstsq()
         """
-        X_transp = X_train.T
-        self.w = np.dot(
-            np.linalg.inv( X_transp.dot(X_train) ),
-            X_transp.dot(Y_train)
-        )
-        return self.w
+        Xt = X_train.T
+        try:
+            self.w = np.linalg.solve(Xt.dot(X_train), Xt.dot(Y_train))
+        except np.linalg.LinAlgError:
+            self.w = np.linalg.lstsq(Xt.dot(X_train), Xt.dot(Y_train), rcond=None)[0]
+
+        return self
 
 
 """
@@ -157,7 +166,7 @@ class GradientDescent(LinearRegression):
 
         self.num_iterations = i
 
-        return self.w
+        return self
 
     def save_hyperparams(self, hparams):
         self.w_0 = hparams['w_0']
